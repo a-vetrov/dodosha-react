@@ -1,0 +1,45 @@
+.container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #CEA2DD;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.perspectiveCell {
+    position: relative;
+    width: calc(100% + 20vh);
+    margin-left: -10vh;
+    perspective: 100px;
+}
+
+.ceil {
+    height: 10vh;
+    background: url("images/ceil-block.svg");
+    background-position: bottom center;
+    transform: rotateX(-10deg);
+}
+
+.perspectiveFloor {
+    position: relative;
+    width: calc(100% + 60vh);
+    margin-left: -30vh;
+    perspective: 100px;
+}
+
+.floor {
+    height: 30vh;
+    background: url('images/floor-block.svg');
+    background-position: top left;
+    transform: rotateX(10deg);
+}
+
+.wall {
+    flex-grow: 1;
+    background: url("images/wall-block.svg");
+    background-color: #CEA2DD;
+    background-position: center;
+}

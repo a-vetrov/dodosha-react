@@ -1,0 +1,78 @@
+
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="690px" height="70px" viewBox="0 0 690 70">
+<defs>
+<linearGradient id="Gradient_1" gradientUnits="userSpaceOnUse" x1="-204.02500000000003" y1="52.4" x2="165.925" y2="52.4" spreadMethod="pad">
+<stop  offset="0%" stop-color="#D85D2D"/>
+
+<stop  offset="100%" stop-color="#F98A3C"/>
+</linearGradient>
+
+<linearGradient id="Gradient_2" gradientUnits="userSpaceOnUse" x1="-31.525000000000034" y1="17.4" x2="338.425" y2="17.4" spreadMethod="pad">
+<stop  offset="0%" stop-color="#D85D2D"/>
+
+<stop  offset="100%" stop-color="#F98A3C"/>
+</linearGradient>
+
+<linearGradient id="Gradient_3" gradientUnits="userSpaceOnUse" x1="164.52499999999998" y1="52.4" x2="534.475" y2="52.4" spreadMethod="pad">
+<stop  offset="0%" stop-color="#D85D2D"/>
+
+<stop  offset="100%" stop-color="#F98A3C"/>
+</linearGradient>
+
+<linearGradient id="Gradient_4" gradientUnits="userSpaceOnUse" x1="534.475" y1="52.4" x2="904.4250000000001" y2="52.4" spreadMethod="pad">
+<stop  offset="0%" stop-color="#D85D2D"/>
+
+<stop  offset="100%" stop-color="#F98A3C"/>
+</linearGradient>
+
+<linearGradient id="Gradient_5" gradientUnits="userSpaceOnUse" x1="338.42499999999995" y1="17.4" x2="708.375" y2="17.4" spreadMethod="pad">
+<stop  offset="0%" stop-color="#D85D2D"/>
+
+<stop  offset="100%" stop-color="#F98A3C"/>
+</linearGradient>
+
+<g id="Layer0_0_FILL">
+<path fill="url(#Gradient_1)" stroke="none" d="
+M 165.95 70
+L 165.95 35 0 35 0 70 165.95 70 Z"/>
+
+<path fill="url(#Gradient_2)" stroke="none" d="
+M 338.45 35
+L 338.45 0 0 0 0 35 165.95 35 338.45 35 Z"/>
+
+<path fill="url(#Gradient_3)" stroke="none" d="
+M 534.5 70
+L 534.5 35 338.45 35 165.95 35 165.95 70 534.5 70 Z"/>
+
+<path fill="url(#Gradient_4)" stroke="none" d="
+M 690 70
+L 690 35 534.5 35 534.5 70 690 70 Z"/>
+
+<path fill="url(#Gradient_5)" stroke="none" d="
+M 690 35
+L 690 0 338.45 0 338.45 35 534.5 35 690 35 Z"/>
+</g>
+
+<path id="Layer0_0_1_STROKES" stroke="#C75A14" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" fill="none" d="
+M 690 0
+L 338.45 0 338.45 35 534.5 35 690 35
+M 690 70
+L 534.5 70 165.95 70 0 70
+M 0 0
+L 338.45 0
+M 534.5 35
+L 534.5 70
+M 165.95 70
+L 165.95 35 0 35
+M 165.95 35
+L 338.45 35"/>
+</defs>
+
+<g id="Layer_1">
+<g transform="matrix( 1, 0, 0, 1, 0,0) ">
+<use xlink:href="#Layer0_0_FILL"/>
+
+<use xlink:href="#Layer0_0_1_STROKES"/>
+</g>
+</g>
+</svg>

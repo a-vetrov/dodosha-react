@@ -4,10 +4,12 @@ import MainPage from "./pages/main/MainPage";
 import PaintPage from "./pages/paint/PaintPage";
 import AlphabetPage from "./pages/alphabet/AlphabetPage";
 import {NAVIGATION_URL} from "./__data__/constants";
+import MainBackground from "./components/main-background/MainBackground";
 
 function App() {
     return (
         <Router>
+            <MainBackground />
             <div>
                 <p>Hello, world!</p>
                 <Switch>
