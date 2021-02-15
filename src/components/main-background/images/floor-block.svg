@@ -2,33 +2,33 @@
 <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" preserveAspectRatio="none" x="0px" y="0px" width="690px" height="70px" viewBox="0 0 690 70">
 <defs>
 <linearGradient id="Gradient_1" gradientUnits="userSpaceOnUse" x1="-204.02500000000003" y1="52.4" x2="165.925" y2="52.4" spreadMethod="pad">
-<stop  offset="0%" stop-color="#D85D2D"/>
+<stop  offset="0%" stop-color="#D89C84"/>
 
-<stop  offset="100%" stop-color="#F98A3C"/>
+<stop  offset="100%" stop-color="#F9C19B"/>
 </linearGradient>
 
 <linearGradient id="Gradient_2" gradientUnits="userSpaceOnUse" x1="-31.525000000000034" y1="17.4" x2="338.425" y2="17.4" spreadMethod="pad">
-<stop  offset="0%" stop-color="#D85D2D"/>
+<stop  offset="0%" stop-color="#D89C84"/>
 
-<stop  offset="100%" stop-color="#F98A3C"/>
+<stop  offset="100%" stop-color="#F9C19B"/>
 </linearGradient>
 
 <linearGradient id="Gradient_3" gradientUnits="userSpaceOnUse" x1="164.52499999999998" y1="52.4" x2="534.475" y2="52.4" spreadMethod="pad">
-<stop  offset="0%" stop-color="#D85D2D"/>
+<stop  offset="0%" stop-color="#D89C84"/>
 
-<stop  offset="100%" stop-color="#F98A3C"/>
+<stop  offset="100%" stop-color="#F9C19B"/>
 </linearGradient>
 
 <linearGradient id="Gradient_4" gradientUnits="userSpaceOnUse" x1="534.475" y1="52.4" x2="904.4250000000001" y2="52.4" spreadMethod="pad">
-<stop  offset="0%" stop-color="#D85D2D"/>
+<stop  offset="0%" stop-color="#D89C84"/>
 
-<stop  offset="100%" stop-color="#F98A3C"/>
+<stop  offset="100%" stop-color="#F9C19B"/>
 </linearGradient>
 
 <linearGradient id="Gradient_5" gradientUnits="userSpaceOnUse" x1="338.42499999999995" y1="17.4" x2="708.375" y2="17.4" spreadMethod="pad">
-<stop  offset="0%" stop-color="#D85D2D"/>
+<stop  offset="0%" stop-color="#D89C84"/>
 
-<stop  offset="100%" stop-color="#F98A3C"/>
+<stop  offset="100%" stop-color="#F9C19B"/>
 </linearGradient>
 
 <g id="Layer0_0_FILL">
@@ -53,7 +53,7 @@ M 690 35
 L 690 0 338.45 0 338.45 35 534.5 35 690 35 Z"/>
 </g>
 
-<path id="Layer0_0_1_STROKES" stroke="#C75A14" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" fill="none" d="
+<path id="Layer0_0_1_STROKES" stroke="#C79778" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" fill="none" d="
 M 690 0
 L 338.45 0 338.45 35 534.5 35 690 35
 M 690 70

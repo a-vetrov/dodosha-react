@@ -5,13 +5,13 @@ import PaintPage from "./pages/paint/PaintPage";
 import AlphabetPage from "./pages/alphabet/AlphabetPage";
 import {NAVIGATION_URL} from "./__data__/constants";
 import MainBackground from "./components/main-background/MainBackground";
+import style from './App.module.css'
 
 function App() {
     return (
         <Router>
             <MainBackground />
-            <div>
-                <p>Hello, world!</p>
+            <div className={style.content}>
                 <Switch>
                     <Route path={NAVIGATION_URL.PAINT}>
                         <PaintPage/>
