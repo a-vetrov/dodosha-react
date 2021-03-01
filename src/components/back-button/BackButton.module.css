@@ -1,0 +1,14 @@
+.link {
+    width: 100px;
+    height: 100px;
+    background: url("./back.svg");
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transition: all 0.3s;
+    display: block;
+}
+
+.link:hover {
+    transform: scale(1.1);
+}
