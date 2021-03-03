@@ -6,11 +6,13 @@ import AlphabetPage from "./pages/alphabet/AlphabetPage";
 import {NAVIGATION_URL} from "./__data__/constants";
 import MainBackground from "./components/main-background/MainBackground";
 import style from './App.module.css'
+import LoadingIcon from "./components/loading-icon/LoadingIcon";
 
 function App() {
     return (
         <Router>
             <MainBackground />
+            <LoadingIcon />
             <div className={style.content}>
                 <Switch>
                     <Route path={NAVIGATION_URL.PAINT}>
