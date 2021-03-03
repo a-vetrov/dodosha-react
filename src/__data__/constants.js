@@ -5,3 +5,5 @@ export const NAVIGATION_URL = {
     ALPHABET_SPEAKING_KEYBOARD: '/алфавит/говорящий алфавит',
     ALPHABET_ALPHABET_PUZZLE: '/алфавит/собери слово',
 }
+
+export const NO_GRAPHICS_MODE = true
