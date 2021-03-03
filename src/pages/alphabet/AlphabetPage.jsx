@@ -13,10 +13,10 @@ function AlphabetPage() {
             <BackButton />
             <nav className={style.nav}>
                 <Link to={NAVIGATION_URL.ALPHABET_SPEAKING_KEYBOARD} className={style.link}>
-                    {NO_GRAPHICS_MODE ? 'Speaking keayboard' : <img src={speakingKeyboardIcon} className={style.item}/>}
+                    {NO_GRAPHICS_MODE ? 'Speaking keyboard' : <img src={speakingKeyboardIcon} className={style.item} alt='Говорящий алфавит'/>}
                 </Link>
                 <Link to={NAVIGATION_URL.ALPHABET_ALPHABET_PUZZLE} className={style.link}>
-                    {NO_GRAPHICS_MODE ? 'Puzzle' : <img src={alphabetPuzzleIcon} className={style.item}/>}
+                    {NO_GRAPHICS_MODE ? 'Puzzle' : <img src={alphabetPuzzleIcon} className={style.item} alt='Собери слово'/>}
                 </Link>
             </nav>
         </>

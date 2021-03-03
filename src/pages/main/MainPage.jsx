@@ -10,10 +10,10 @@ function MainPage() {
     return (
         <nav className={style.nav}>
             <Link to={NAVIGATION_URL.ALPHABET} className={style.link}>
-                {NO_GRAPHICS_MODE ? 'Alphabet' : <img src={alphabet} className={style.alphabet}/>}
+                {NO_GRAPHICS_MODE ? 'Alphabet' : <img src={alphabet} className={style.alphabet}  alt='Изучаем алфавит'/>}
             </Link>
             <Link to={NAVIGATION_URL.PAINT} className={style.link}>
-                {NO_GRAPHICS_MODE ? 'Paint' : <img src={paint} className={style.paint}/>}
+                {NO_GRAPHICS_MODE ? 'Paint' : <img src={paint} className={style.paint} alt='Онлайн раскраски'/>}
             </Link>
         </nav>
     );
