@@ -9,6 +9,7 @@ import MainBackground from "./components/main-background/MainBackground";
 import style from './App.module.css'
 import LoadingIcon from "./components/loading-icon/LoadingIcon";
 import {store} from "./__data__/store";
+import SpeakingKeyboard from "./games/speaking-keyboard/SpeakingKeyboard";
 
 function App() {
     return (
@@ -21,8 +22,11 @@ function App() {
                         <Route path={NAVIGATION_URL.PAINT}>
                             <PaintPage/>
                         </Route>
-                        <Route path={NAVIGATION_URL.ALPHABET}>
+                        <Route path={NAVIGATION_URL.ALPHABET} exact>
                             <AlphabetPage/>
+                        </Route>
+                        <Route path={NAVIGATION_URL.ALPHABET_SPEAKING_KEYBOARD}>
+                            <SpeakingKeyboard/>
                         </Route>
                         <Route path={NAVIGATION_URL.MAIN}>
                             <MainPage/>
