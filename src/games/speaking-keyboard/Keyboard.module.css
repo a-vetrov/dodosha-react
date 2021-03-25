@@ -1,0 +1,13 @@
+.keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    width: 40%;
+}
+
+.button {
+    cursor: pointer;
+    padding: 10px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid gray;
+}

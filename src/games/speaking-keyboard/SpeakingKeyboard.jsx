@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux'
 
 import BackButton from "../../components/back-button/BackButton";
 import {fetchAlphabetData} from "../../__data__/actions/fetchAlphabetData";
+import Keyboard from "./Keyboard";
 
 const SpeakingKeyboard = ({fetch, loaded, data}) => {
 
@@ -14,11 +15,15 @@ const SpeakingKeyboard = ({fetch, loaded, data}) => {
 
     console.log('data', data)
 
+    if (!loaded)
+        return null
+
     return (
         <>
             <BackButton />
             <div>
                 Говорящий алфавит
+                <Keyboard />
             </div>
         </>
     );
