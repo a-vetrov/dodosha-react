@@ -1,19 +1,27 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
 import BackButton from "../../components/back-button/BackButton";
 import {fetchAlphabetData} from "../../__data__/actions/fetchAlphabetData";
 import Keyboard from "./Keyboard";
+import LetterBlock from "./LetterBlock";
 
 const SpeakingKeyboard = ({fetch, loaded, data}) => {
 
+    const [currentLetter, setCurrentLetter] = useState(null)
+
     useEffect(() => {
-        fetch()
+        if (!loaded)
+            fetch()
     // eslint-disable-next-line
     }, [])
 
-    console.log('data', data)
+    const onLetterChange = s => {
+        setCurrentLetter(s)
+    }
+
+    //console.log('data', data)
 
     if (!loaded)
         return null
@@ -22,8 +30,8 @@ const SpeakingKeyboard = ({fetch, loaded, data}) => {
         <>
             <BackButton />
             <div>
-                Говорящий алфавит
-                <Keyboard />
+                <LetterBlock letter={currentLetter}/>
+                <Keyboard onChange={onLetterChange}/>
             </div>
         </>
     );

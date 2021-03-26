@@ -3,13 +3,14 @@ import {getLetters} from "../../__data__/selectors/alphabet/getLetters";
 import {connect} from "react-redux";
 import style from './Keyboard.module.css'
 
-const Keyboard = ({letters}) => {
+const Keyboard = ({letters, onChange}) => {
 
     if (!letters?.length)
         return null
 
     const handleClick = e => {
-        console.log(e.target.dataset.key)
+        if (onChange)
+            onChange(e.target.dataset.key)
     }
 
     return (
