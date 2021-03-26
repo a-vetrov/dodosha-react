@@ -1,0 +1,1 @@
+export const getWordsByLetter = (words, letter) => words.filter(item => item.letter === letter)

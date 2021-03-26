@@ -1,15 +1,19 @@
 import React, {useEffect, useState} from 'react';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import _ from 'lodash'
+import PropTypes from 'prop-types';
 
 import BackButton from "../../components/back-button/BackButton";
 import {fetchAlphabetData} from "../../__data__/actions/fetchAlphabetData";
 import Keyboard from "./Keyboard";
 import LetterBlock from "./LetterBlock";
+import {getWordsByLetter} from "./utils";
 
-const SpeakingKeyboard = ({fetch, loaded, data}) => {
+const SpeakingKeyboard = ({fetch, loaded, words}) => {
 
     const [currentLetter, setCurrentLetter] = useState(null)
+    const [currentWord, setCurrentWord] = useState(null)
 
     useEffect(() => {
         if (!loaded)
@@ -19,9 +23,8 @@ const SpeakingKeyboard = ({fetch, loaded, data}) => {
 
     const onLetterChange = s => {
         setCurrentLetter(s)
+        setCurrentWord(_.sample(getWordsByLetter(words, s)))
     }
-
-    //console.log('data', data)
 
     if (!loaded)
         return null
@@ -37,13 +40,24 @@ const SpeakingKeyboard = ({fetch, loaded, data}) => {
     );
 };
 
+SpeakingKeyboard.propTypes = {
+    fetch: PropTypes.func.isRequired,
+    loaded: PropTypes.bool,
+    words: PropTypes.arrayOf(PropTypes.object),
+}
+
+SpeakingKeyboard.defaultProps = {
+    loaded: false,
+    words: [],
+}
+
 const mapDispatchToProps = (dispatch) => ({
     fetch: bindActionCreators(fetchAlphabetData, dispatch)
 })
 
 const mapStateToProps = (state) => ({
     loaded: state.alphabet.loaded,
-    data: state.alphabet,
+    words: state.alphabet?.words,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpeakingKeyboard)
