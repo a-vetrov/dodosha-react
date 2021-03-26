@@ -8,10 +8,11 @@ import BackButton from "../../components/back-button/BackButton";
 import {fetchAlphabetData} from "../../__data__/actions/fetchAlphabetData";
 import Keyboard from "./Keyboard";
 import LetterBlock from "./LetterBlock";
-import {getWordsByLetter} from "./utils";
+import {getAlphabetURL, getSoundURLs, getWordsByLetter} from "./utils";
 import WordBlock from "./WordBlock";
+import {playSound, playSoundSequence} from "../../utils/soundUtils";
 
-const SpeakingKeyboard = ({fetch, loaded, words}) => {
+const SpeakingKeyboard = ({fetch, loaded, words, letterWord}) => {
 
     const [currentLetter, setCurrentLetter] = useState(null)
     const [currentWord, setCurrentWord] = useState(null)
@@ -24,7 +25,11 @@ const SpeakingKeyboard = ({fetch, loaded, words}) => {
 
     const onLetterChange = s => {
         setCurrentLetter(s)
-        setCurrentWord(_.sample(getWordsByLetter(words, s)))
+        const word = _.sample(getWordsByLetter(words, s))
+        //playSound({url:getAlphabetURL(word.mp3), onEnd: () => console.log('The end')})
+        if (word)
+            playSoundSequence(getSoundURLs({...word, letterWord}))
+        setCurrentWord(word)
     }
 
     if (!loaded)
@@ -60,6 +65,7 @@ const mapDispatchToProps = (dispatch) => ({
 const mapStateToProps = (state) => ({
     loaded: state.alphabet.loaded,
     words: state.alphabet?.words,
+    letterWord: state.alphabet?.letterWord,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpeakingKeyboard)
