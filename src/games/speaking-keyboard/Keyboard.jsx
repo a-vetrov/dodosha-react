@@ -1,11 +1,13 @@
 import React from 'react';
 import {getLetters} from "../../__data__/selectors/alphabet/getLetters";
 import {connect} from "react-redux";
+import PropTypes from 'prop-types';
+
 import style from './Keyboard.module.css'
 
 const Keyboard = ({letters, onChange}) => {
 
-    if (!letters?.length)
+    if (!letters.length)
         return null
 
     const handleClick = e => {
@@ -23,6 +25,15 @@ const Keyboard = ({letters, onChange}) => {
         </div>
     );
 };
+
+Keyboard.propTypes = {
+    onChange: PropTypes.func.isRequired,
+    letters: PropTypes.arrayOf(PropTypes.string),
+}
+
+Keyboard.defaultProps = {
+    letters: [],
+}
 
 const mapStateToProps = (state) => ({
     letters: getLetters(state),

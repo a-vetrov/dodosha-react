@@ -9,6 +9,7 @@ import {fetchAlphabetData} from "../../__data__/actions/fetchAlphabetData";
 import Keyboard from "./Keyboard";
 import LetterBlock from "./LetterBlock";
 import {getWordsByLetter} from "./utils";
+import WordBlock from "./WordBlock";
 
 const SpeakingKeyboard = ({fetch, loaded, words}) => {
 
@@ -33,7 +34,8 @@ const SpeakingKeyboard = ({fetch, loaded, words}) => {
         <>
             <BackButton />
             <div>
-                <LetterBlock letter={currentLetter}/>
+                {currentWord && <WordBlock {...currentWord} />}
+                {currentLetter && <LetterBlock letter={currentLetter}/>}
                 <Keyboard onChange={onLetterChange}/>
             </div>
         </>
