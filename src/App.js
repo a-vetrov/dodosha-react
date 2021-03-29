@@ -10,6 +10,7 @@ import style from './App.module.css'
 import LoadingIcon from "./components/loading-icon/LoadingIcon";
 import {store} from "./__data__/store";
 import SpeakingKeyboard from "./games/speaking-keyboard/SpeakingKeyboard";
+import AlphabetPuzzle from "./games/alphabet-puzzle/AlphabetPuzzle";
 
 function App() {
     return (
@@ -27,6 +28,9 @@ function App() {
                         </Route>
                         <Route path={NAVIGATION_URL.ALPHABET_SPEAKING_KEYBOARD}>
                             <SpeakingKeyboard/>
+                        </Route>
+                        <Route path={NAVIGATION_URL.ALPHABET_ALPHABET_PUZZLE}>
+                            <AlphabetPuzzle/>
                         </Route>
                         <Route path={NAVIGATION_URL.MAIN}>
                             <MainPage/>
