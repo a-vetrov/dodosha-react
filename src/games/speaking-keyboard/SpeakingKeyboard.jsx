@@ -8,11 +8,12 @@ import BackButton from "../../components/back-button/BackButton";
 import {fetchAlphabetData} from "../../__data__/actions/fetchAlphabetData";
 import Keyboard from "./Keyboard";
 import LetterBlock from "./LetterBlock";
-import {getAlphabetURL, getSoundURLs, getWordsByLetter} from "./utils";
+import {getSoundURLs, getWordsByLetter} from "./utils";
 import WordBlock from "./WordBlock";
-import {playSound, playSoundSequence} from "../../utils/soundUtils";
+import {playSoundSequence} from "../../utils/soundUtils";
+import {getLettersURLDict} from "../../__data__/selectors/alphabet/getLetters";
 
-const SpeakingKeyboard = ({fetch, loaded, words, letterWord}) => {
+const SpeakingKeyboard = ({fetch, loaded, words, letters, letterWord}) => {
 
     const [currentLetter, setCurrentLetter] = useState(null)
     const [currentWord, setCurrentWord] = useState(null)
@@ -26,9 +27,11 @@ const SpeakingKeyboard = ({fetch, loaded, words, letterWord}) => {
     const onLetterChange = s => {
         setCurrentLetter(s)
         const word = _.sample(getWordsByLetter(words, s))
-        //playSound({url:getAlphabetURL(word.mp3), onEnd: () => console.log('The end')})
-        if (word)
-            playSoundSequence(getSoundURLs({...word, letterWord}))
+        if (word) {
+            playSoundSequence(getSoundURLs({mp3: word.mp3, letterWord, letter: letters[word.letter]}))
+        } else {
+            playSoundSequence(getSoundURLs({letterWord, letter: letters[s]}))
+        }
         setCurrentWord(word)
     }
 
@@ -51,11 +54,13 @@ SpeakingKeyboard.propTypes = {
     fetch: PropTypes.func.isRequired,
     loaded: PropTypes.bool,
     words: PropTypes.arrayOf(PropTypes.object),
+    letters: PropTypes.object,
 }
 
 SpeakingKeyboard.defaultProps = {
     loaded: false,
     words: [],
+    letters: {},
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -64,8 +69,9 @@ const mapDispatchToProps = (dispatch) => ({
 
 const mapStateToProps = (state) => ({
     loaded: state.alphabet.loaded,
-    words: state.alphabet?.words,
-    letterWord: state.alphabet?.letterWord,
+    words: state.alphabet.words,
+    letters: getLettersURLDict(state),
+    letterWord: state.alphabet.letterWord,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpeakingKeyboard)

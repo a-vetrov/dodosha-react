@@ -11,8 +11,6 @@ export const playSound = ({url, onEnd}) => {
 export const playSoundSequence = urls => {
     let index = 0
 
-    console.log('urls', urls)
-
     const onEnd = () => {
         index++
         if (sounds[index])
