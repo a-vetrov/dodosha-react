@@ -12,8 +12,9 @@ import {getSoundURLs, getWordsByLetter} from "./utils";
 import WordBlock from "./WordBlock";
 import {playSoundSequence} from "../../utils/soundUtils";
 import {getLettersURLDict} from "../../__data__/selectors/alphabet/getLetters";
+import ErrorMessage from "../../components/error-message/ErrorMessage";
 
-const SpeakingKeyboard = ({fetch, loaded, words, letters, letterWord}) => {
+const SpeakingKeyboard = ({fetch, loaded, words, letters, letterWord, error}) => {
 
     const [currentLetter, setCurrentLetter] = useState(null)
     const [currentWord, setCurrentWord] = useState(null)
@@ -33,6 +34,10 @@ const SpeakingKeyboard = ({fetch, loaded, words, letters, letterWord}) => {
             playSoundSequence(getSoundURLs({letterWord, letter: letters[s]}))
         }
         setCurrentWord(word)
+    }
+
+    if (error){
+        return <ErrorMessage message='Ошибка загрузки'/>
     }
 
     if (!loaded)
@@ -55,12 +60,16 @@ SpeakingKeyboard.propTypes = {
     loaded: PropTypes.bool,
     words: PropTypes.arrayOf(PropTypes.object),
     letters: PropTypes.object,
+    letterWord: PropTypes.string,
+    error: PropTypes.bool,
 }
 
 SpeakingKeyboard.defaultProps = {
     loaded: false,
     words: [],
     letters: {},
+    letterWord: '',
+    error: false,
 }
 
 const mapDispatchToProps = (dispatch) => ({
@@ -72,6 +81,7 @@ const mapStateToProps = (state) => ({
     words: state.alphabet.words,
     letters: getLettersURLDict(state),
     letterWord: state.alphabet.letterWord,
+    error: state.alphabet.error,
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SpeakingKeyboard)
