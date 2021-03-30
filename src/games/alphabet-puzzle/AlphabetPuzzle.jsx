@@ -8,6 +8,7 @@ import {fetchAlphabetData} from "../../__data__/actions/fetchAlphabetData";
 import {connect} from "react-redux";
 import {getShortWords} from "../../__data__/selectors/alphabet/getWords";
 import ErrorMessage from "../../components/error-message/ErrorMessage";
+import Puzzle from "./Puzzle";
 
 const AlphabetPuzzle = ({fetch, loaded, words, error}) => {
 
@@ -42,6 +43,7 @@ const AlphabetPuzzle = ({fetch, loaded, words, error}) => {
             <BackButton />
             <div>
                 AlphabetPuzzle {currentWord?.word}
+                {currentWord && <Puzzle {...currentWord} />}
             </div>
         </>
     );

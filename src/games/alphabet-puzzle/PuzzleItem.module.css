@@ -1,0 +1,17 @@
+.container {
+    width: 50px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+
+    border: 1px solid gray;
+}
+
+.picture {
+    flex-grow: 1;
+}
+
+.letter {
+    font-size: 20px;
+    font-weight: bold;
+}
