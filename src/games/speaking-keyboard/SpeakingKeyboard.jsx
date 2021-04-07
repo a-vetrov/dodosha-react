@@ -14,6 +14,8 @@ import {playSoundSequence} from "../../utils/soundUtils";
 import {getLettersURLDict} from "../../__data__/selectors/alphabet/getLetters";
 import ErrorMessage from "../../components/error-message/ErrorMessage";
 
+import style from './SpeakingKeyboard.module.css'
+
 const SpeakingKeyboard = ({fetch, loaded, words, letters, letterWord, error}) => {
 
     const [currentLetter, setCurrentLetter] = useState(null)
@@ -46,10 +48,14 @@ const SpeakingKeyboard = ({fetch, loaded, words, letters, letterWord, error}) =>
     return (
         <>
             <BackButton />
-            <div>
-                {currentWord && <WordBlock {...currentWord} />}
-                {currentLetter && <LetterBlock letter={currentLetter}/>}
-                <Keyboard onChange={onLetterChange}/>
+            <div className={style['main-container']}>
+                <div className={style['left-container']}>
+                    {currentLetter && <LetterBlock letter={currentLetter}/>}
+                    <Keyboard onChange={onLetterChange}/>
+                </div>
+                <div className={style['right-container']}>
+                    {currentWord && <WordBlock {...currentWord} />}
+                </div>
             </div>
         </>
     );

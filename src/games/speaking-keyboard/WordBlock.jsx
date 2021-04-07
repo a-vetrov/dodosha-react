@@ -10,10 +10,10 @@ const WordBlock = ({word, img,}) => {
 
     return (
         <div className={style.container}>
-            <div>
+            <div className={style.imageContainer}>
                 {NO_GRAPHICS_MODE ? url : <img src={url} alt='' />}
             </div>
-            <div>{word}</div>
+            <div className={style.word}>{word}</div>
         </div>
     );
 };

@@ -1,6 +1,6 @@
 .link {
-    width: 100px;
-    height: 100px;
+    width: 5vmin;
+    height: 5vmin;
     background: url("./back.svg");
     position: absolute;
     top: 10px;
