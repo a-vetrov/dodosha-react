@@ -8,10 +8,17 @@ import {NO_GRAPHICS_MODE} from "../../__data__/constants";
 const WordBlock = ({word, img,}) => {
     const url = useMemo(() => getAlphabetURL(img), [img])
 
+    const imgStyle = useMemo(() => {
+        const url = getAlphabetURL(img)
+        return {
+            backgroundImage: `url(${url})`
+        }
+    }, [img])
+
     return (
         <div className={style.container}>
-            <div className={style.imageContainer}>
-                {NO_GRAPHICS_MODE ? url : <img src={url} alt='' />}
+            <div className={style.imageContainer} style={NO_GRAPHICS_MODE ? null : imgStyle}>
+                {NO_GRAPHICS_MODE ? url : ''}
             </div>
             <div className={style.word}>{word}</div>
         </div>

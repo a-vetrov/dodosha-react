@@ -3,10 +3,16 @@
     flex-direction: column;
     background: white;
     padding: 5vmin;
+    width: 50vmin;
+    height: 50vmin;
+    max-height: 50vmin;
+    max-width: 50vmin;
 }
 
 .imageContainer {
     flex-grow: 1;
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .word {
