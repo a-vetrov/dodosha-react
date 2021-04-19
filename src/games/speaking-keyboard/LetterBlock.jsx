@@ -7,9 +7,13 @@ import style from './LetterBlock.module.css'
 const LetterBlock = ({letter}) => {
 
     const [isAppear, setIsAppear] = useState(false)
+    const [localLetter, setLocalLetter] = useState(null)
 
     useEffect(() => {
-        setIsAppear(true)
+        if (letter) {
+            setIsAppear(true)
+            setLocalLetter(letter)
+        }
     }, [letter])
 
     const onAnimationEnd = () => {
@@ -17,14 +21,19 @@ const LetterBlock = ({letter}) => {
     }
 
     return (
-        <div className={classnames(style.container, { [style.appear]: isAppear })} onAnimationEnd={onAnimationEnd}>
-            {letter || ' '}
+        <div className={classnames(style.container, { [style.appear]: isAppear }, {[style.invisible]: !localLetter})}
+             onAnimationEnd={onAnimationEnd}>
+            {localLetter || ' '}
         </div>
     );
 };
 
 LetterBlock.propTypes = {
-    letter: PropTypes.string.isRequired,
+    letter: PropTypes.string,
+}
+
+LetterBlock.defaultProps = {
+    letter: null,
 }
 
 export default LetterBlock;

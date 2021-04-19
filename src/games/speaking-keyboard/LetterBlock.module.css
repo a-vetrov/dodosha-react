@@ -4,8 +4,9 @@
     background: white;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), inset 0 0 100px rgba(0, 0, 0, 0.1);
-    width: 80%;
     align-self: center;
+    width: 30vmin;
+    height: 30vmin;
 }
 
 
@@ -29,4 +30,8 @@
 .appear {
     animation-name: backInDown;
     animation-duration: 1s;
+}
+
+.invisible {
+    visibility: hidden;
 }

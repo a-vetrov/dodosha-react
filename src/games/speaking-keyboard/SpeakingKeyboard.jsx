@@ -50,7 +50,7 @@ const SpeakingKeyboard = ({fetch, loaded, words, letters, letterWord, error}) =>
             <BackButton />
             <div className={style['main-container']}>
                 <div className={style['left-container']}>
-                    {currentLetter && <LetterBlock letter={currentLetter}/>}
+                    <LetterBlock letter={currentLetter}/>
                     <Keyboard onChange={onLetterChange}/>
                 </div>
                 <div className={style['right-container']}>
