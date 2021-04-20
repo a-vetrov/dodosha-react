@@ -1,9 +1,9 @@
 .container {
     font-size: 20vmin;
     font-weight: bold;
+    box-shadow: 0 4px 8px 0 rgba(34, 60, 80, 0.4);
     background: white;
     text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2), inset 0 0 100px rgba(0, 0, 0, 0.1);
     align-self: center;
     width: 30vmin;
     height: 30vmin;

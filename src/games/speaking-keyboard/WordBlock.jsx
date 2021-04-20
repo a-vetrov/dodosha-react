@@ -6,7 +6,6 @@ import {getAlphabetURL} from "./utils";
 import {NO_GRAPHICS_MODE} from "../../__data__/constants";
 
 const WordBlock = ({word, img,}) => {
-    const url = useMemo(() => getAlphabetURL(img), [img])
 
     const imgStyle = useMemo(() => {
         const url = getAlphabetURL(img)
@@ -15,10 +14,14 @@ const WordBlock = ({word, img,}) => {
         }
     }, [img])
 
+    if (!word) {
+        return <div className={style['container-empty']} />
+    }
+
     return (
         <div className={style.container}>
             <div className={style.imageContainer} style={NO_GRAPHICS_MODE ? null : imgStyle}>
-                {NO_GRAPHICS_MODE ? url : ''}
+                {NO_GRAPHICS_MODE ? img : ''}
             </div>
             <div className={style.word}>{word}</div>
         </div>
@@ -26,8 +29,14 @@ const WordBlock = ({word, img,}) => {
 };
 
 WordBlock.propTypes = {
-    word: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
-};
+    word: PropTypes.string,
+    img: PropTypes.string,
+}
+
+WordBlock.defaultProps = {
+    word: null,
+    img: null,
+}
+
 
 export default WordBlock;

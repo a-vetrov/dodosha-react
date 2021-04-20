@@ -54,7 +54,7 @@ const SpeakingKeyboard = ({fetch, loaded, words, letters, letterWord, error}) =>
                     <Keyboard onChange={onLetterChange}/>
                 </div>
                 <div className={style['right-container']}>
-                    {currentWord && <WordBlock {...currentWord} />}
+                    <WordBlock {...currentWord} />
                 </div>
             </div>
         </>
