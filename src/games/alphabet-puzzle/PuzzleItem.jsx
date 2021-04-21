@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 
 import style from './PuzzleItem.module.css'
 
-const PuzzleItem = ({letter, leftItem, rightItem}) => {
+const getPositionStyle = p => p ? ({left: `${p.left}px`, top: `${p.top}px`}) : null
+
+const PuzzleItem = ({letter, position}) => {
     return (
-        <div className={style.container}>
+        <div className={style.container} style={getPositionStyle(position)}>
             <div className={style.picture}>Picture</div>
             <div className={style.letter}>
                 {letter.toUpperCase()}
@@ -16,8 +18,7 @@ const PuzzleItem = ({letter, leftItem, rightItem}) => {
 
 PuzzleItem.propTypes = {
     letter: PropTypes.string.isRequired,
-    leftItem: PropTypes.number.isRequired,
-    rightItem: PropTypes.number.isRequired,
+    position: PropTypes.object.isRequired,
 }
 
 export default PuzzleItem
