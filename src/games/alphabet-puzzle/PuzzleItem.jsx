@@ -5,16 +5,19 @@ import style from './PuzzleItem.module.css'
 
 const getPositionStyle = p => p ? ({left: `${p.left}px`, top: `${p.top}px`}) : null
 
-const PuzzleItem = ({letter, position}) => {
+const PuzzleItem = React.forwardRef(({item, onMouseDown}, ref) => {
+
+    const handleMouseDown = (e) => onMouseDown(e, item)
+
     return (
-        <div className={style.container} style={getPositionStyle(position)}>
+        <div className={style.container} style={getPositionStyle(item.position)} ref={ref} onMouseDown={handleMouseDown}>
             <div className={style.picture}>Picture</div>
             <div className={style.letter}>
-                {letter.toUpperCase()}
+                {item.letter.toUpperCase()}
             </div>
         </div>
     )
-}
+})
 
 PuzzleItem.propTypes = {
     letter: PropTypes.string.isRequired,

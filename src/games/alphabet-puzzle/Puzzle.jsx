@@ -7,15 +7,33 @@ const Puzzle = ({word, img}) => {
 
     const [puzzleStructure, setPuzzleStructure] = useState(null)
 
+    const [currentItem, setCurrentItem] = useState(null)
+
     useEffect(() => {
         const struct = new PuzzleStructure(word)
+        struct.list.forEach(item => item.ref = React.createRef())
         setPuzzleStructure(struct)
     }, [word])
 
+    const onMouseDown = (e, item) => {
+        setCurrentItem(item)
+    }
+
+    const handleMouseMove = e => {
+        if (currentItem) {
+            console.log(e)
+            currentItem.position = {left: e.clientX, top: e.clientY}
+            setCurrentItem(currentItem)
+        }
+    }
+
+    console.log('Render')
+
     return (
-        <div>
+        <div onMouseMove={handleMouseMove}>
             { puzzleStructure ?
-                puzzleStructure.list.map(item => <PuzzleItem letter={item.letter} key={item.index} position={item.position}/>)
+                puzzleStructure.list.map(item =>
+                    <PuzzleItem item={item} key={item.index} ref={item.ref} onMouseDown={onMouseDown}/>)
                 : null
             }
         </div>
