@@ -1,11 +1,15 @@
-import React, {useMemo} from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import classnames from 'classnames'
 
 import style from './WordBlock.module.css'
 import {getAlphabetURL} from "./utils";
 import {NO_GRAPHICS_MODE} from "../../__data__/constants";
+import useAppear from "./hooks/useAppear";
 
 const WordBlock = ({word, img,}) => {
+
+    const {isAppear, onAnimationEnd, localParam:localWord} = useAppear(word)
 
     const imgStyle = useMemo(() => {
         const url = getAlphabetURL(img)
@@ -19,11 +23,11 @@ const WordBlock = ({word, img,}) => {
     }
 
     return (
-        <div className={style.container}>
+        <div className={classnames(style.container, { [style.appear]: isAppear })} onAnimationEnd={onAnimationEnd}>
             <div className={style.imageContainer} style={NO_GRAPHICS_MODE ? null : imgStyle}>
                 {NO_GRAPHICS_MODE ? img : ''}
             </div>
-            <div className={style.word}>{word}</div>
+            <div className={style.word}>{localWord}</div>
         </div>
     );
 };

@@ -9,6 +9,11 @@
     flex-wrap: wrap;
 }
 
+.keyboard::after {
+    content: "";
+    flex: auto;
+}
+
 .button {
     cursor: pointer;
     margin: 0.5vw;

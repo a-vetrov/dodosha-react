@@ -1,24 +1,13 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import classnames from 'classnames'
 import PropTypes from 'prop-types';
 
 import style from './LetterBlock.module.css'
+import useAppear from "./hooks/useAppear";
 
 const LetterBlock = ({letter}) => {
 
-    const [isAppear, setIsAppear] = useState(false)
-    const [localLetter, setLocalLetter] = useState(null)
-
-    useEffect(() => {
-        if (letter) {
-            setIsAppear(true)
-            setLocalLetter(letter)
-        }
-    }, [letter])
-
-    const onAnimationEnd = () => {
-        setIsAppear(false)
-    }
+    const {isAppear, onAnimationEnd, localParam: localLetter} = useAppear(letter)
 
     return (
         <div className={classnames(style.container, { [style.appear]: isAppear }, {[style.invisible]: !localLetter})}

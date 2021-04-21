@@ -31,9 +31,9 @@ const SpeakingKeyboard = ({fetch, loaded, words, letters, letterWord, error}) =>
         setCurrentLetter(s)
         const word = _.sample(getWordsByLetter(words, s))
         if (word) {
-            playSoundSequence(getSoundURLs({mp3: word.mp3, letterWord, letter: letters[word.letter]}))
+            //playSoundSequence(getSoundURLs({mp3: word.mp3, letterWord, letter: letters[word.letter]}))
         } else {
-            playSoundSequence(getSoundURLs({letterWord, letter: letters[s]}))
+            //playSoundSequence(getSoundURLs({letterWord, letter: letters[s]}))
         }
         setCurrentWord(word)
     }

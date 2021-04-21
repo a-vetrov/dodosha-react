@@ -30,6 +30,7 @@
 .appear {
     animation-name: backInDown;
     animation-duration: 1s;
+    animation-fill-mode: both;
 }
 
 .invisible {

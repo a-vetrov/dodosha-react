@@ -27,5 +27,35 @@
 
 .word {
     white-space: nowrap;
-    font-size: 5vmin;
+    font-size: 6vw;
+}
+
+.word:first-letter {
+    font-weight: bold;
+    font-size: larger;
+}
+
+
+@keyframes backInDown {
+    0% {
+        transform: translateY(-1200px) scale(0.7);
+        opacity: 0.7;
+    }
+
+    80% {
+        transform: translateY(0px) scale(0.7);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.appear {
+    animation-name: backInDown;
+    animation-delay: 1s;
+    animation-fill-mode: both;
+    animation-duration: 1s;
 }
