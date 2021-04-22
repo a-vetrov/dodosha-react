@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import Item from "./Item";
 
 const getDefaultPosition = index => {
@@ -9,7 +10,9 @@ class PuzzleStructure {
 
     constructor(word) {
 
-        this.list = word.split('').map((s, index) => new Item(s, index))
+        const list = word.split('').map((s, index) => new Item(s, index))
+
+        this.list = _.shuffle(list)
 
         this.list.forEach((item, index) => {
             item.position = getDefaultPosition(index)
@@ -19,6 +22,15 @@ class PuzzleStructure {
                 item.leftItem = prev
             }
         })
+
+    }
+
+    getItem = index => this.list.find(item => item.index === index)
+
+    setOnTop = item => {
+        const arr = _.without(this.list, item)
+        arr.push(item)
+        this.list = arr
     }
 }
 

@@ -9,6 +9,15 @@
     position: absolute;
     top: 0;
     left: 0;
+
+    background: white;
+    cursor: grab;
+    box-shadow: 4px 4px 8px 0 rgba(34, 60, 80, 0.2);
+}
+
+.grabbing {
+    cursor: grabbing;
+    box-shadow: 8px 8px 8px 0 rgba(34, 60, 80, 0.2);
 }
 
 .picture {

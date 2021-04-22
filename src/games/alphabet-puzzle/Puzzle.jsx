@@ -1,44 +1,91 @@
-import React, {useState, useEffect} from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import PuzzleItem from "./PuzzleItem";
 import PuzzleStructure from "./data/PuzzleStructure";
 
-const Puzzle = ({word, img}) => {
+import style from './Puzzle.module.css'
 
-    const [puzzleStructure, setPuzzleStructure] = useState(null)
+const GRAB_SHIFT = 4
+const defaultShift = {x: -GRAB_SHIFT, y: -GRAB_SHIFT}
 
-    const [currentItem, setCurrentItem] = useState(null)
+class Puzzle extends Component{
 
-    useEffect(() => {
-        const struct = new PuzzleStructure(word)
-        struct.list.forEach(item => item.ref = React.createRef())
-        setPuzzleStructure(struct)
-    }, [word])
+    constructor(props) {
+        super(props);
 
-    const onMouseDown = (e, item) => {
-        setCurrentItem(item)
-    }
-
-    const handleMouseMove = e => {
-        if (currentItem) {
-            console.log(e)
-            currentItem.position = {left: e.clientX, top: e.clientY}
-            setCurrentItem(currentItem)
+        this.state = {
+            puzzleStructure: null,
+            currentItemIndex: null,
+            currentItemShift: defaultShift
         }
     }
 
-    console.log('Render')
+    componentDidMount = () => {
+        const puzzleStructure = new PuzzleStructure(this.props.word)
+        puzzleStructure.list.forEach(item => item.ref = React.createRef())
+        this.setState({puzzleStructure})
+    }
 
-    return (
-        <div onMouseMove={handleMouseMove}>
-            { puzzleStructure ?
-                puzzleStructure.list.map(item =>
-                    <PuzzleItem item={item} key={item.index} ref={item.ref} onMouseDown={onMouseDown}/>)
-                : null
-            }
-        </div>
-    );
-};
+    handleMouseDown = (e, item) => {
+        let currentItemShift
+        const {puzzleStructure} = this.state
+        const currentItemIndex = item.index
+
+        if (item?.ref?.current) {
+            const {x, y} = item.ref.current.getBoundingClientRect()
+            currentItemShift = {x: e.clientX - x + GRAB_SHIFT, y: e.clientY - y + GRAB_SHIFT}
+        } else {
+            currentItemShift = defaultShift
+        }
+
+        const currentItem = puzzleStructure.getItem(currentItemIndex)
+        const {left, top} = currentItem.position
+        currentItem.setPosition(left - GRAB_SHIFT, top - GRAB_SHIFT)
+        puzzleStructure.setOnTop(currentItem)
+
+        this.setState({currentItemIndex, currentItemShift, puzzleStructure})
+    }
+
+    handleMouseMove = (e) => {
+        const {puzzleStructure, currentItemIndex, currentItemShift} = this.state
+        const currentItem = puzzleStructure.getItem(currentItemIndex)
+
+        if (currentItem) {
+            currentItem.setPosition(e.clientX - currentItemShift.x, e.clientY - currentItemShift.y)
+            this.setState({puzzleStructure})
+        }
+    }
+
+    handleMouseUp = () => {
+        const {currentItemIndex, puzzleStructure} = this.state
+
+        if (currentItemIndex !== null) {
+            const currentItem = puzzleStructure.getItem(currentItemIndex)
+            const {left, top} = currentItem.position
+            currentItem.setPosition(left + GRAB_SHIFT, top + GRAB_SHIFT)
+            this.setState({currentItemIndex: null, puzzleStructure})
+        }
+    }
+
+    render() {
+        const {puzzleStructure, currentItemIndex} = this.state
+
+        return (
+            <div onMouseMove={this.handleMouseMove} onMouseUp={this.handleMouseUp}
+                 className={style['absolute-container']}>
+                <div className={style.container}>
+                    {puzzleStructure ?
+                        puzzleStructure.list.map((item, index) =>
+                            <PuzzleItem item={item} key={item.index} ref={item.ref} zIndex={index}
+                                        grabbing={currentItemIndex === item.index} onMouseDown={this.handleMouseDown}/>)
+                        : null
+                    }
+                </div>
+            </div>
+        )
+    }
+
+}
 
 Puzzle.propTypes = {
     word: PropTypes.string.isRequired,

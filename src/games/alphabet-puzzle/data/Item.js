@@ -12,6 +12,10 @@ class Item {
     ref = null
 
     position = null
+
+    setPosition = (left, top) => {
+        this.position = {left, top}
+    }
 }
 
 export default Item
