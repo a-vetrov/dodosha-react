@@ -4,23 +4,25 @@ import PropTypes from 'prop-types';
 
 import style from './PuzzleItem.module.css'
 
+const getStyle = (position, zIndex) => {
+    const s = {zIndex}
+
+    if (position) {
+        s.left = `${position.left}px`
+        s.top = `${position.top}px`
+    }
+    return s
+}
+
 const PuzzleItem = React.forwardRef(({item, onMouseDown, grabbing, zIndex}, ref) => {
 
-    const handleMouseDown = (e) => onMouseDown(e, item)
+    const handleMouseDown = useMemo(() => (e) => onMouseDown(e, item), [item, onMouseDown])
 
-    const getStyle = () => {
-        const s = {zIndex}
-
-        if (item.position) {
-            s.left = `${item.position.left}px`
-            s.top = `${item.position.top}px`
-        }
-        return s
-    }
+    const itemStyle = useMemo(() => getStyle(item.position, zIndex), [item.position, zIndex])
 
     return (
         <div className={classnames(style.container, {[style.grabbing]: grabbing})}
-             style={getStyle()}
+             style={itemStyle}
              ref={ref}
              onMouseDown={handleMouseDown}
         >
