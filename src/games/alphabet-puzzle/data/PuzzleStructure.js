@@ -3,12 +3,14 @@ import Item from "./Item";
 
 const getDefaultPosition = (index, dimensions) => {
 
-    return {top: 300, left: 100 + (dimensions.width + dimensions.gap) * index}
+    return {top: 0.2*window.innerHeight, left: 100 + (dimensions.width + dimensions.gap) * index}
 }
 
 class PuzzleStructure {
 
     constructor(word) {
+
+        this.word = word
 
         this.list = word.split('').map((s, index) => new Item(s, index))
 
@@ -28,13 +30,13 @@ class PuzzleStructure {
             item.width = this.dimensions.width
             item.position = getDefaultPosition(index, this.dimensions)
         })
-
+        this.updateBackgroundShift()
     }
 
     getItemDimensions = () => {
-        const w = window.innerWidth * 0.8
+        const w = Math.min(window.innerWidth, window.innerHeight) * 0.6
         const count =this.list.length
-        const width = w / (1.5 * count - 0.5)
+        const width = w / count
 
         return {
             width,
@@ -60,6 +62,17 @@ class PuzzleStructure {
 
         this.list = _.without(this.list, item2)
         this.setOnTop(item1)
+        this.updateBackgroundShift()
+    }
+
+    updateBackgroundShift = () => {
+        let dw = 0
+        let item = this.getItem(0)
+        do  {
+            item.backgroundShift = dw
+            dw -= item.width
+            item = item.rightItem
+        } while (item)
     }
 }
 

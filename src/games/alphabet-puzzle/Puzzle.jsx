@@ -89,6 +89,7 @@ class Puzzle extends Component{
 
     render() {
         const {puzzleStructure, currentItemIndex} = this.state
+        const {img} = this.props
 
         return (
             <div onMouseMove={this.handleMouseMove} onMouseUp={this.handleMouseUp}
@@ -97,7 +98,9 @@ class Puzzle extends Component{
                     {puzzleStructure ?
                         puzzleStructure.list.map((item, index) =>
                             <PuzzleItem item={item} key={item.index} ref={item.ref} zIndex={index}
-                                        grabbing={currentItemIndex === item.index} onMouseDown={this.handleMouseDown}/>)
+                                        grabbing={currentItemIndex === item.index} onMouseDown={this.handleMouseDown}
+                                        img={img}
+                            />)
                         : null
                     }
                 </div>

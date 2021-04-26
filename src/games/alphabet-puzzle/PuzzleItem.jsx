@@ -3,6 +3,7 @@ import classnames from "classnames";
 import PropTypes from 'prop-types';
 
 import style from './PuzzleItem.module.css'
+import {getAlphabetURL} from "../speaking-keyboard/utils";
 
 const getStyle = (position, width, zIndex) => {
     const s = {zIndex}
@@ -17,7 +18,17 @@ const getStyle = (position, width, zIndex) => {
     return s
 }
 
-const PuzzleItem = React.forwardRef(({item, onMouseDown, grabbing, zIndex}, ref) => {
+const getPictureStyle = (img, shift) => {
+    console.log('shift', shift)
+    const url = getAlphabetURL(img)
+    return {
+        backgroundImage: `url(${url})`,
+        backgroundPositionX: `${shift}px`,
+        backgroundPositionY: 'center',
+    }
+}
+
+const PuzzleItem = React.forwardRef(({item, onMouseDown, grabbing, zIndex, img}, ref) => {
 
     const handleMouseDown = useMemo(() => (e) => onMouseDown(e, item), [item, onMouseDown])
 
@@ -25,13 +36,15 @@ const PuzzleItem = React.forwardRef(({item, onMouseDown, grabbing, zIndex}, ref)
 
     const letterArr = item.letter.split('')
 
+    const pictureStyle = getPictureStyle(img, item.backgroundShift)
+
     return (
         <div className={classnames(style.container, {[style.grabbing]: grabbing})}
              style={itemStyle}
              ref={ref}
              onMouseDown={handleMouseDown}
         >
-            <div className={style.picture}>Picture</div>
+            <div className={style.picture} style={pictureStyle}>Picture</div>
             <div className={style.letter}>
                 {letterArr.map((s, index) => <div key={index}>{s}</div>)}
             </div>
@@ -44,6 +57,7 @@ PuzzleItem.propTypes = {
     grabbing: PropTypes.bool.isRequired,
     onMouseDown: PropTypes.func,
     zIndex: PropTypes.number.isRequired,
+    img: PropTypes.string.isRequired,
 }
 
 export default PuzzleItem
