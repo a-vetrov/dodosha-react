@@ -37,13 +37,17 @@ const AlphabetPuzzle = ({fetch, loaded, words, error}) => {
     if (!loaded)
         return null
 
+    const handleComplete = () => {
+        console.log('Puzzle completed')
+    }
+
 
     return (
         <>
             <BackButton />
             <div>
                 AlphabetPuzzle {currentWord?.word}
-                {currentWord && <Puzzle {...currentWord} />}
+                {currentWord && <Puzzle {...currentWord} onComplete={handleComplete}/>}
             </div>
         </>
     );

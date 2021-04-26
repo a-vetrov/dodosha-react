@@ -21,7 +21,7 @@ class Puzzle extends Component{
     }
 
     componentDidMount = () => {
-        const puzzleStructure = new PuzzleStructure(this.props.word)
+        const puzzleStructure = new PuzzleStructure(this.props.word.toUpperCase())
         puzzleStructure.list.forEach(item => item.ref = React.createRef())
         this.setState({puzzleStructure})
     }
@@ -61,10 +61,30 @@ class Puzzle extends Component{
 
         if (currentItemIndex !== null) {
             const currentItem = puzzleStructure.getItem(currentItemIndex)
-            const {left, top} = currentItem.position
-            currentItem.setPosition(left + GRAB_SHIFT, top + GRAB_SHIFT)
+
+            if (!this.joinToNeighbor()) {
+                const {left, top} = currentItem.position
+                currentItem.setPosition(left + GRAB_SHIFT, top + GRAB_SHIFT)
+            }
             this.setState({currentItemIndex: null, puzzleStructure})
+            if (puzzleStructure.list.length === 1) {
+                this.props.onComplete()
+            }
         }
+    }
+
+    joinToNeighbor = () => {
+        const {currentItemIndex, puzzleStructure} = this.state
+        const currentItem = puzzleStructure.getItem(currentItemIndex)
+
+        if (currentItem.closeToTheLeftItem()) {
+            puzzleStructure.join(currentItem.leftItem, currentItem)
+            return true
+        } else if (currentItem.closeToTheRightItem()) {
+            puzzleStructure.join(currentItem, currentItem.rightItem)
+            return true
+        }
+        return false
     }
 
     render() {

@@ -1,6 +1,6 @@
 .container {
     width: 50px;
-    height: 300px;
+    height: 60vh;
     display: flex;
     flex-direction: column;
 
@@ -27,4 +27,6 @@
 .letter {
     font-size: 20px;
     font-weight: bold;
+    display: flex;
+    justify-content: space-around;
 }

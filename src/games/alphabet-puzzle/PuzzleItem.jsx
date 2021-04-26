@@ -4,12 +4,15 @@ import PropTypes from 'prop-types';
 
 import style from './PuzzleItem.module.css'
 
-const getStyle = (position, zIndex) => {
+const getStyle = (position, width, zIndex) => {
     const s = {zIndex}
 
     if (position) {
         s.left = `${position.left}px`
         s.top = `${position.top}px`
+    }
+    if (width) {
+        s.width = `${width}px`
     }
     return s
 }
@@ -18,7 +21,9 @@ const PuzzleItem = React.forwardRef(({item, onMouseDown, grabbing, zIndex}, ref)
 
     const handleMouseDown = useMemo(() => (e) => onMouseDown(e, item), [item, onMouseDown])
 
-    const itemStyle = useMemo(() => getStyle(item.position, zIndex), [item.position, zIndex])
+    const itemStyle = useMemo(() => getStyle(item.position, item.width, zIndex), [item.position, item.width, zIndex])
+
+    const letterArr = item.letter.split('')
 
     return (
         <div className={classnames(style.container, {[style.grabbing]: grabbing})}
@@ -28,7 +33,7 @@ const PuzzleItem = React.forwardRef(({item, onMouseDown, grabbing, zIndex}, ref)
         >
             <div className={style.picture}>Picture</div>
             <div className={style.letter}>
-                {item.letter.toUpperCase()}
+                {letterArr.map((s, index) => <div key={index}>{s}</div>)}
             </div>
         </div>
     )
