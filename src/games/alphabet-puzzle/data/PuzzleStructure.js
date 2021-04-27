@@ -44,6 +44,30 @@ class PuzzleStructure {
         }
     }
 
+    updateDimensions = () => {
+        this.dimensions = this.getItemDimensions()
+        const maxX = window.innerWidth, maxY = window.innerHeight
+        let shouldUpdate = false
+
+        this.list.forEach((item, index) => {
+            item.width = item.letter.length * this.dimensions.width
+            const rect = item.getBounds()
+
+            if (rect) {
+                if (rect.right > maxX) {
+                    item.position.left -= rect.right - maxX
+                    shouldUpdate = true
+                }
+                if (rect.bottom > maxY) {
+                    item.position.top -= rect.bottom - maxY
+                    shouldUpdate = true
+                }
+            }
+        })
+
+        return shouldUpdate
+    }
+
     getItem = index => this.list.find(item => item.index === index)
 
     setOnTop = item => {

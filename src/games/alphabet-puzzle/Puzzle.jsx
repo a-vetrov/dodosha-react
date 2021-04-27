@@ -24,12 +24,17 @@ class Puzzle extends Component{
 
     componentDidMount = () => {
        this.createPuzzleStructure()
+        window.addEventListener('resize', this.handleWindowResize)
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.word !== prevProps.word) {
             this.createPuzzleStructure()
         }
+    }
+
+    componentWillUnmount = () => {
+        window.removeEventListener('resize', this.handleWindowResize)
     }
 
     createPuzzleStructure = () => {
@@ -79,6 +84,16 @@ class Puzzle extends Component{
             ease: 'power1.in',
             onComplete: this.props.onComplete
         })
+    }
+
+    handleWindowResize = (e) => {
+        const {puzzleStructure} = this.state
+
+        if (puzzleStructure) {
+            if (puzzleStructure.updateDimensions()) {
+                this.setState({puzzleStructure})
+            }
+        }
     }
 
     handleMouseDown = (e, item) => {
