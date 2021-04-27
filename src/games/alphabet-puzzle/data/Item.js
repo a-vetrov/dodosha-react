@@ -17,6 +17,8 @@ class Item {
 
     width = 0
 
+    backgroundShift = 0
+
     getBounds = () => {
         if (!this.ref || !this.ref.current) {
             return null
