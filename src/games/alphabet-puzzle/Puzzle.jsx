@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import gsap from 'gsap'
 import PuzzleItem from "./PuzzleItem";
 import PuzzleStructure from "./data/PuzzleStructure";
 
@@ -23,7 +24,20 @@ class Puzzle extends Component{
     componentDidMount = () => {
         const puzzleStructure = new PuzzleStructure(this.props.word.toUpperCase())
         puzzleStructure.list.forEach(item => item.ref = React.createRef())
-        this.setState({puzzleStructure})
+        this.startAppearAnimation(puzzleStructure)
+    }
+
+    startAppearAnimation = (puzzleStructure) => {
+        const arr = puzzleStructure.list.map(item => item.position)
+        const top = arr[0].top
+        arr.forEach(item => item.top = -1000)
+        const onUpdate = () => {
+            this.setState({puzzleStructure})
+        }
+        const onComplete = () => {
+            console.log('onComplete')
+        }
+        gsap.to(arr, {top, onUpdate, duration: 0.5, stagger: 0.1, ease:'back.out(1.7)', onComplete})
     }
 
     handleMouseDown = (e, item) => {

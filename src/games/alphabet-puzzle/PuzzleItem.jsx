@@ -21,7 +21,7 @@ const PuzzleItem = React.forwardRef(({item, onMouseDown, grabbing, zIndex}, ref)
 
     const handleMouseDown = useMemo(() => (e) => onMouseDown(e, item), [item, onMouseDown])
 
-    const itemStyle = useMemo(() => getStyle(item.position, item.width, zIndex), [item.position, item.width, zIndex])
+    const itemStyle = useMemo(() => getStyle(item.position, item.width, zIndex), [item.position.top, item.position.left, item.width, zIndex])
 
     const letterArr = item.letter.split('')
 
