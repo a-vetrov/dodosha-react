@@ -39,6 +39,7 @@ const AlphabetPuzzle = ({fetch, loaded, words, error}) => {
 
     const handleComplete = () => {
         console.log('Puzzle completed')
+        setRandomCurrentWord()
     }
 
 

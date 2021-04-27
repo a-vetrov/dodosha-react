@@ -48,9 +48,6 @@ class Item {
         const rect1 = item1.getBounds()
         const rect2 = item2.getBounds()
 
-        console.log(item1.letter, rect1)
-        console.log(item2.letter, rect2)
-
         if (!rect1 || !rect2)
             return false
 

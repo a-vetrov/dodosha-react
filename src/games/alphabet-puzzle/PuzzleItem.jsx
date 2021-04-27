@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import style from './PuzzleItem.module.css'
 import {getAlphabetURL} from "../speaking-keyboard/utils";
+import {NO_GRAPHICS_MODE} from "../../__data__/constants";
 
 const getStyle = (position, width, zIndex) => {
     const s = {zIndex}
@@ -19,10 +20,9 @@ const getStyle = (position, width, zIndex) => {
 }
 
 const getPictureStyle = (img, shift) => {
-    console.log('shift', shift)
     const url = getAlphabetURL(img)
     return {
-        backgroundImage: `url(${url})`,
+        backgroundImage: NO_GRAPHICS_MODE ? 'none' : `url(${url})`,
         backgroundPositionX: `${shift}px`,
         backgroundPositionY: 'center',
     }
@@ -44,7 +44,7 @@ const PuzzleItem = React.forwardRef(({item, onMouseDown, grabbing, zIndex, img},
              ref={ref}
              onMouseDown={handleMouseDown}
         >
-            <div className={style.picture} style={pictureStyle}>Picture</div>
+            <div className={style.picture} style={pictureStyle} />
             <div className={style.letter}>
                 {letterArr.map((s, index) => <div key={index}>{s}</div>)}
             </div>

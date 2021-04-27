@@ -17,11 +17,22 @@ class Puzzle extends Component{
         this.state = {
             puzzleStructure: null,
             currentItemIndex: null,
-            currentItemShift: defaultShift
+            currentItemShift: defaultShift,
+            enabled: false,
         }
     }
 
     componentDidMount = () => {
+       this.createPuzzleStructure()
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.word !== prevProps.word) {
+            this.createPuzzleStructure()
+        }
+    }
+
+    createPuzzleStructure = () => {
         const puzzleStructure = new PuzzleStructure(this.props.word.toUpperCase())
         puzzleStructure.list.forEach(item => item.ref = React.createRef())
         this.startAppearAnimation(puzzleStructure)
@@ -31,18 +42,53 @@ class Puzzle extends Component{
         const arr = puzzleStructure.list.map(item => item.position)
         const top = arr[0].top
         arr.forEach(item => item.top = -1000)
+
         const onUpdate = () => {
             this.setState({puzzleStructure})
         }
+
         const onComplete = () => {
-            console.log('onComplete')
+            this.setState({enabled: true})
         }
+
         gsap.to(arr, {top, onUpdate, duration: 0.5, stagger: 0.1, ease:'back.out(1.7)', onComplete})
     }
 
-    handleMouseDown = (e, item) => {
-        let currentItemShift
+    startFinalAnimation = () => {
         const {puzzleStructure} = this.state
+        this.setState({enabled: false})
+
+        const item = puzzleStructure.list[0]?.ref?.current
+
+        if (!item) {
+            return
+        }
+
+        const rect = item.getBoundingClientRect()
+        const toObj = {left: (window.innerWidth - rect.width) / 2, top: (window.innerHeight - rect.height) / 2}
+
+        gsap.to(item, {...toObj, duration:0.5, ease:'back.out(1.7)'})
+        gsap.to(item, {
+            y: '+500',
+            rotation: 30,
+            rotationY: 90,
+            rotationX: 90,
+            opacity: 0,
+            duration: 1,
+            delay: 1.5,
+            ease: 'power1.in',
+            onComplete: this.props.onComplete
+        })
+    }
+
+    handleMouseDown = (e, item) => {
+        const {puzzleStructure, enabled} = this.state
+
+        if (!enabled) {
+            return
+        }
+
+        let currentItemShift
         const currentItemIndex = item.index
 
         if (item?.ref?.current) {
@@ -62,6 +108,7 @@ class Puzzle extends Component{
 
     handleMouseMove = (e) => {
         const {puzzleStructure, currentItemIndex, currentItemShift} = this.state
+
         const currentItem = puzzleStructure.getItem(currentItemIndex)
 
         if (currentItem) {
@@ -73,18 +120,17 @@ class Puzzle extends Component{
     handleMouseUp = () => {
         const {currentItemIndex, puzzleStructure} = this.state
 
-        if (currentItemIndex !== null) {
-            const currentItem = puzzleStructure.getItem(currentItemIndex)
+        const currentItem = puzzleStructure.getItem(currentItemIndex)
 
-            if (!this.joinToNeighbor()) {
-                const {left, top} = currentItem.position
-                currentItem.setPosition(left + GRAB_SHIFT, top + GRAB_SHIFT)
-            }
-            this.setState({currentItemIndex: null, puzzleStructure})
-            if (puzzleStructure.list.length === 1) {
-                this.props.onComplete()
-            }
+        if (!this.joinToNeighbor()) {
+            const {left, top} = currentItem.position
+            currentItem.setPosition(left + GRAB_SHIFT, top + GRAB_SHIFT)
         }
+        this.setState({currentItemIndex: null, puzzleStructure}, () => {
+            if (puzzleStructure.list.length === 1) {
+                this.startFinalAnimation()
+            }
+        })
     }
 
     joinToNeighbor = () => {
@@ -101,17 +147,29 @@ class Puzzle extends Component{
         return false
     }
 
+    getMouseEvents = () => {
+        const {currentItemIndex, enabled} = this.state
+
+        if (enabled && currentItemIndex !== null) {
+            return {
+                onMouseMove: this.handleMouseMove,
+                onMouseUp: this.handleMouseUp,
+            }
+        }
+        return {}
+    }
+
     render() {
         const {puzzleStructure, currentItemIndex} = this.state
-        const {img} = this.props
+        const {img, word} = this.props
+        const events = this.getMouseEvents()
 
         return (
-            <div onMouseMove={this.handleMouseMove} onMouseUp={this.handleMouseUp}
-                 className={style['absolute-container']}>
+            <div {...events} className={style['absolute-container']}>
                 <div className={style.container}>
                     {puzzleStructure ?
                         puzzleStructure.list.map((item, index) =>
-                            <PuzzleItem item={item} key={item.index} ref={item.ref} zIndex={index}
+                            <PuzzleItem item={item} key={word + item.index} ref={item.ref} zIndex={index}
                                         grabbing={currentItemIndex === item.index} onMouseDown={this.handleMouseDown}
                                         img={img}
                             />)
@@ -127,6 +185,11 @@ class Puzzle extends Component{
 Puzzle.propTypes = {
     word: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired,
-};
+    onComplete: PropTypes.func
+}
+
+Puzzle.defaultTypes = {
+    onComplete: null,
+}
 
 export default Puzzle;
