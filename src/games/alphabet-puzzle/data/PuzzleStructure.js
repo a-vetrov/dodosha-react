@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import Item from "./Item";
+import Rectangle from "../../../utils/geom/Rectangle";
 
 const getDefaultPosition = (index, dimensions) => {
 
@@ -47,25 +48,21 @@ class PuzzleStructure {
     updateDimensions = () => {
         this.dimensions = this.getItemDimensions()
         const maxX = window.innerWidth, maxY = window.innerHeight
-        let shouldUpdate = false
+
+        const union = new Rectangle(0, 0, 0, 0)
 
         this.list.forEach((item, index) => {
+            const rect = Rectangle.fromDOMRect(item.getBounds())
             item.width = item.letter.length * this.dimensions.width
-            const rect = item.getBounds()
+            rect.width = item.width
 
-            if (rect) {
-                if (rect.right > maxX) {
-                    item.position.left -= rect.right - maxX
-                    shouldUpdate = true
-                }
-                if (rect.bottom > maxY) {
-                    item.position.top -= rect.bottom - maxY
-                    shouldUpdate = true
-                }
-            }
+            union.extend(rect)
         })
 
-        return shouldUpdate
+        if (union.right <= maxX || union.bottom <= maxY)
+            return false
+
+        return true
     }
 
     getItem = index => this.list.find(item => item.index === index)

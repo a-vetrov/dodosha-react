@@ -90,9 +90,8 @@ class Puzzle extends Component{
         const {puzzleStructure} = this.state
 
         if (puzzleStructure) {
-            if (puzzleStructure.updateDimensions()) {
-                this.setState({puzzleStructure})
-            }
+            puzzleStructure.updateDimensions()
+            this.setState({puzzleStructure})
         }
     }
 
