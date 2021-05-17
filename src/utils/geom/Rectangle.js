@@ -27,6 +27,13 @@ class Rectangle {
         return this.y + this.height
     }
 
+    get center() {
+        return {
+            x: this.x + this.width / 2,
+            y: this.y + this.height / 2,
+        }
+    }
+
     extend = (rect) => {
         if (rect.right > this.right) {
             this.width = rect.right - this.x

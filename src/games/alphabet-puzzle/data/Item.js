@@ -30,6 +30,11 @@ class Item {
         this.position = {left, top}
     }
 
+    shift = (dx = 0, dy = 0) => {
+        const {left, top} = this.position
+        this.setPosition(left + dx, top + dy)
+    }
+
     closeToTheRightItem = () => {
         if (!this.rightItem)
             return false

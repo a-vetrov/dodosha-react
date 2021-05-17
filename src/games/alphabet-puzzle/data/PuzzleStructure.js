@@ -49,20 +49,46 @@ class PuzzleStructure {
         this.dimensions = this.getItemDimensions()
         const maxX = window.innerWidth, maxY = window.innerHeight
 
-        const union = new Rectangle(0, 0, 0, 0)
+        let union
 
         this.list.forEach((item, index) => {
             const rect = Rectangle.fromDOMRect(item.getBounds())
             item.width = item.letter.length * this.dimensions.width
             rect.width = item.width
 
-            union.extend(rect)
+            if (union) {
+                union.extend(rect)
+            } else  {
+                union = rect
+            }
         })
 
-        if (union.right <= maxX || union.bottom <= maxY)
-            return false
+        if (union.right <= maxX && union.bottom <= maxY) {
+            return
+        }
 
-        return true
+        const center = union.center
+        const dx = maxX / 2 - center.x
+        const dy = maxY / 2 - center.y
+
+        this.list.forEach((item) => item.shift(dx, dy))
+
+        if (union.width > maxX) {
+            const ratio = maxX / union.width * 0.9
+            this.list.forEach((item) => {
+                const delta =  (center.x - item.position.left) * (1 - ratio)
+                item.shift(delta)
+            })
+        }
+
+        if (union.height > maxY) {
+            const ratio = maxY / union.height * 0.9
+            this.list.forEach((item) => {
+                const delta = (center.y - item.position.top) * (1 - ratio)
+                item.shift(0, delta)
+            })
+        }
+
     }
 
     getItem = index => this.list.find(item => item.index === index)
