@@ -4,7 +4,10 @@ import Rectangle from "../../../utils/geom/Rectangle";
 
 const getDefaultPosition = (index, dimensions) => {
 
-    return {top: 0.2*window.innerHeight, left: 100 + (dimensions.width + dimensions.gap) * index}
+    return {
+        top: 0.2*window.innerHeight,
+        left: dimensions.padding + (dimensions.width + dimensions.gap) * index,
+    }
 }
 
 class PuzzleStructure {
@@ -35,13 +38,15 @@ class PuzzleStructure {
     }
 
     getItemDimensions = () => {
-        const w = Math.min(window.innerWidth, window.innerHeight) * 0.6
-        const count =this.list.length
-        const width = w / count
+        const w = Math.min(window.innerWidth, window.innerHeight)
+        const count = this.list.length
+        const effectiveCount = count + (count - 1) / 2 + 1
+        const width = w / effectiveCount
 
         return {
             width,
-            gap: width / 2
+            gap: width / 2,
+            padding: (window.innerWidth - w) / 2 + width / 2,
         }
     }
 

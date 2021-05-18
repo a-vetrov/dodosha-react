@@ -30,7 +30,7 @@
 }
 
 .letter {
-    font-size: 10vh;
+    font-size: 10vmin;
     font-weight: bold;
     display: flex;
     justify-content: space-around;
