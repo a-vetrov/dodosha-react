@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import gsap from 'gsap'
+import confetti from 'canvas-confetti'
+
 import PuzzleItem from "./PuzzleItem";
 import PuzzleStructure from "./data/PuzzleStructure";
 
@@ -62,6 +64,11 @@ class Puzzle extends Component{
     startFinalAnimation = () => {
         const {puzzleStructure} = this.state
         this.setState({enabled: false})
+
+        confetti({
+            particleCount: 100,
+            spread: 70,
+        })
 
         const item = puzzleStructure.list[0]?.ref?.current
 
