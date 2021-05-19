@@ -3,20 +3,20 @@
     flex-direction: column;
     background: white;
     padding: 5vmin;
-    width: 50vmin;
-    height: 50vmin;
-    max-height: 50vmin;
-    max-width: 50vmin;
+    width: 40vw;
+    height: 40vw;
+    max-height: 40vw;
+    max-width: 40vw;
     box-shadow: 0 4px 8px 0 rgba(34, 60, 80, 0.4);
-
+    margin: auto;
     grid-area: word;
 }
 
 .container-empty {
-    width: 50vmin;
-    height: 50vmin;
-    max-height: 50vmin;
-    max-width: 50vmin;
+    width: 40vw;
+    height: 40vw;
+    max-height: 40vw;
+    max-width: 40vw;
     padding: 5vmin;
 
     grid-area: word;
@@ -37,6 +37,24 @@
 .word:first-letter {
     font-weight: bold;
     font-size: larger;
+}
+
+@media (max-aspect-ratio: 3/4) {
+    .container {
+        padding: 2vw;
+        width: 38vw;
+        height: 38vw;
+        max-height: 38vw;
+        max-width: 38vw;
+    }
+
+    .container-empty {
+        padding: 2vw;
+        width: 30vw;
+        height: 30vw;
+        max-height: 30vw;
+        max-width: 30vw;
+    }
 }
 
 

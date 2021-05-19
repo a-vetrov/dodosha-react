@@ -3,12 +3,22 @@
     font-weight: bold;
     box-shadow: 0 4px 8px 0 rgba(34, 60, 80, 0.4);
     background: white;
-    text-align: center;
-    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 30vmin;
     height: 30vmin;
+    margin: auto;
 
     grid-area: letter;
+}
+
+@media (max-aspect-ratio: 3/4) {
+    .container {
+        width: 40vw;
+        height: 40vw;
+        font-size: 30vw;
+    }
 }
 
 

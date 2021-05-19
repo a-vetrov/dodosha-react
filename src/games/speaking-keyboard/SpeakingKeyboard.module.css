@@ -14,13 +14,13 @@
     margin: 0;
 }
 
-@media (orientation: portrait) {
+@media (max-aspect-ratio: 3/4) {
     .main-container {
         grid-template-areas:
-                "letter"
                 "word"
+                "letter"
                 "keyboard";
-        grid-template-rows: 1fr;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        grid-template-columns: 1fr;
     }
 }
