@@ -41,17 +41,13 @@ const AlphabetPuzzle = ({fetch, loaded, words, error}) => {
         setRandomCurrentWord()
     }
 
-
     return (
         <>
             <BackButton />
-            <div>
-                AlphabetPuzzle {currentWord?.word}
-                {currentWord && <Puzzle {...currentWord} onComplete={handleComplete}/>}
-            </div>
+            {currentWord && <Puzzle {...currentWord} onComplete={handleComplete}/>}
         </>
-    );
-};
+    )
+}
 
 AlphabetPuzzle.propTypes = {
     fetch: PropTypes.func.isRequired,

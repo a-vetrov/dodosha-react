@@ -5,10 +5,16 @@
     position: absolute;
     top: 10px;
     left: 10px;
+    z-index: 10000;
     transition: all 0.3s;
     display: block;
 }
 
 .link:hover {
     transform: scale(1.1);
+}
+
+.no-graphic-link {
+    position: absolute;
+    z-index: 10000;
 }

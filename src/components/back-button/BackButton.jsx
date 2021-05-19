@@ -21,7 +21,7 @@ const BackButton = () => {
     const upPathName = useMemo(() => calculateUpPathName(pathname), [pathname])
 
     if (NO_GRAPHICS_MODE)
-        return <Link to={upPathName}>Назад</Link>
+        return <Link to={upPathName} className={style['no-graphic-link']}>Назад</Link>
 
     return (
         <Link to={'.'} className={style.link} />
