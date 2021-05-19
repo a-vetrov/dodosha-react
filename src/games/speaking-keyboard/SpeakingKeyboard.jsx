@@ -49,13 +49,9 @@ const SpeakingKeyboard = ({fetch, loaded, words, letters, letterWord, error}) =>
         <>
             <BackButton />
             <div className={style['main-container']}>
-                <div className={style['left-container']}>
-                    <LetterBlock letter={currentLetter}/>
-                    <Keyboard onChange={onLetterChange}/>
-                </div>
-                <div className={style['right-container']}>
-                    <WordBlock {...currentWord} />
-                </div>
+                <LetterBlock letter={currentLetter}/>
+                <Keyboard onChange={onLetterChange}/>
+                <WordBlock {...currentWord} />
             </div>
         </>
     );

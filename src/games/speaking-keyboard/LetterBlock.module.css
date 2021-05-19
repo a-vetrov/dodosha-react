@@ -7,6 +7,8 @@
     align-self: center;
     width: 30vmin;
     height: 30vmin;
+
+    grid-area: letter;
 }
 
 

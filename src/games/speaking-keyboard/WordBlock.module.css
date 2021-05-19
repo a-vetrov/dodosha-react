@@ -8,6 +8,8 @@
     max-height: 50vmin;
     max-width: 50vmin;
     box-shadow: 0 4px 8px 0 rgba(34, 60, 80, 0.4);
+
+    grid-area: word;
 }
 
 .container-empty {
@@ -16,6 +18,8 @@
     max-height: 50vmin;
     max-width: 50vmin;
     padding: 5vmin;
+
+    grid-area: word;
 }
 
 .imageContainer {
