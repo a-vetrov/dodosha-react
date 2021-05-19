@@ -7,6 +7,8 @@ import PuzzleItem from "./PuzzleItem";
 import PuzzleStructure from "./data/PuzzleStructure";
 
 import style from './Puzzle.module.css'
+import {playSound} from "../../utils/soundUtils";
+import {getAlphabetURL} from "../speaking-keyboard/utils";
 
 const GRAB_SHIFT = 4
 const defaultShift = {x: -GRAB_SHIFT, y: -GRAB_SHIFT}
@@ -45,6 +47,15 @@ class Puzzle extends Component{
         this.startAppearAnimation(puzzleStructure)
     }
 
+    playWordSound = () => {
+        const {mp3} = this.props
+
+        if (!mp3)
+            return
+
+        playSound({url:getAlphabetURL(mp3)})
+    }
+
     startAppearAnimation = (puzzleStructure) => {
         const arr = puzzleStructure.list.map(item => item.position)
         const top = arr[0].top
@@ -58,6 +69,7 @@ class Puzzle extends Component{
             this.setState({enabled: true})
         }
 
+        this.playWordSound()
         gsap.to(arr, {top, onUpdate, duration: 0.5, stagger: 0.1, ease:'back.out(1.7)', onComplete})
     }
 
@@ -206,6 +218,7 @@ class Puzzle extends Component{
 Puzzle.propTypes = {
     word: PropTypes.string.isRequired,
     img: PropTypes.string.isRequired,
+    mp3: PropTypes.string.isRequired,
     onComplete: PropTypes.func
 }
 
