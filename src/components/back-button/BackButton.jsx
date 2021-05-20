@@ -24,7 +24,7 @@ const BackButton = () => {
         return <Link to={upPathName} className={style['no-graphic-link']}>Назад</Link>
 
     return (
-        <Link to={'.'} className={style.link} />
+        <Link to={upPathName} className={style.link} />
     );
 };
 
