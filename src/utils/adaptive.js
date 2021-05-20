@@ -16,3 +16,5 @@ export const isTouchable = _.memoize(isTouchDevice)
 export const isNotTouchable = _.memoize(() => !isTouchable())
 
 export const applyForTouchable = (value, defaultValue) => isTouchable() ? value : defaultValue
+
+export const applyForNotTouchable = (value, defaultValue) => isNotTouchable() ? value : defaultValue

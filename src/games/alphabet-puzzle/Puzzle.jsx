@@ -9,6 +9,7 @@ import PuzzleStructure from "./data/PuzzleStructure";
 import style from './Puzzle.module.css'
 import {playSound} from "../../utils/soundUtils";
 import {getAlphabetURL} from "../speaking-keyboard/utils";
+import {isNotTouchable} from "../../utils/adaptive";
 
 const GRAB_SHIFT = 4
 const defaultShift = {x: -GRAB_SHIFT, y: -GRAB_SHIFT}
@@ -150,6 +151,18 @@ class Puzzle extends Component{
         }
     }
 
+    handleTouchMove = (e) => {
+        const {puzzleStructure, currentItemIndex, currentItemShift} = this.state
+
+        const currentItem = puzzleStructure.getItem(currentItemIndex)
+
+        if (currentItem && e.targetTouches.length) {
+            const {clientX, clientY} = e.targetTouches[0]
+            currentItem.setPosition(clientX - currentItemShift.x, clientY - currentItemShift.y)
+            this.setState({puzzleStructure})
+        }
+    }
+
     handleMouseUp = () => {
         const {currentItemIndex, puzzleStructure} = this.state
 
@@ -183,13 +196,20 @@ class Puzzle extends Component{
     getMouseEvents = () => {
         const {currentItemIndex, enabled} = this.state
 
-        if (enabled && currentItemIndex !== null) {
+        if (!enabled || currentItemIndex === null)
+            return {}
+
+        if (isNotTouchable()) {
             return {
                 onMouseMove: this.handleMouseMove,
                 onMouseUp: this.handleMouseUp,
             }
+        } else {
+            return {
+                onTouchMove: this.handleTouchMove,
+                onTouchEnd: this.handleMouseUp,
+            }
         }
-        return {}
     }
 
     render() {
