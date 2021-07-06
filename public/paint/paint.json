@@ -1,0 +1,49 @@
+{
+  "categories": [
+    {
+      "title": "Category 1",
+      "url": "категория1",
+      "items": [
+        {
+          "svg": "1.svg"
+        },
+        {
+          "svg": "2.svg"
+        },
+        {
+          "svg": "3.svg"
+        }
+      ]
+    },
+    {
+      "title": "Category 2",
+      "url": "категория2",
+      "items": [
+        {
+          "svg": "1.svg"
+        },
+        {
+          "svg": "2.svg"
+        },
+        {
+          "svg": "3.svg"
+        }
+      ]
+    },
+    {
+      "title": "Category 3",
+      "url": "категория3",
+      "items": [
+        {
+          "svg": "1.svg"
+        },
+        {
+          "svg": "2.svg"
+        },
+        {
+          "svg": "3.svg"
+        }
+      ]
+    }
+  ]
+}
