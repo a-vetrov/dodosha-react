@@ -1,12 +1,11 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 
 import style from './ErrorMessage.module.css'
 
 const defaultMessage = 'Произошла ошибка'
 
-const ErrorMessage = ({message}) => {
+const ErrorMessage = ({message = defaultMessage}: {message: string}) => {
     return (
         <div className={style.container}>
             <div className={style.popup}>
@@ -16,14 +15,6 @@ const ErrorMessage = ({message}) => {
 
         </div>
     )
-}
-
-ErrorMessage.propTypes = {
-    message: PropTypes.string,
-}
-
-ErrorMessage.defaultProps = {
-    message: defaultMessage,
 }
 
 export default ErrorMessage

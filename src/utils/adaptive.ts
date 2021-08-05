@@ -2,7 +2,8 @@ import _ from 'lodash'
 
 
 /* from modernizr */
-function isTouchDevice () {
+function isTouchDevice(): boolean {
+    // @ts-ignore
     if (('ontouchstart' in window) || (window.DocumentTouch && document instanceof window.DocumentTouch)) {
         return true
     }
@@ -15,6 +16,6 @@ export const isTouchable = _.memoize(isTouchDevice)
 
 export const isNotTouchable = _.memoize(() => !isTouchable())
 
-export const applyForTouchable = (value, defaultValue) => isTouchable() ? value : defaultValue
+export const applyForTouchable = (value: any, defaultValue: any) => isTouchable() ? value : defaultValue
 
-export const applyForNotTouchable = (value, defaultValue) => isNotTouchable() ? value : defaultValue
+export const applyForNotTouchable = (value: any, defaultValue: any) => isNotTouchable() ? value : defaultValue

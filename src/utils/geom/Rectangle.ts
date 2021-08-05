@@ -3,8 +3,12 @@
  * Copied from https://github.com/CreateJS/EaselJS/blob/master/src/easeljs/geom/Rectangle.js
  */
 class Rectangle {
+    x: number
+    y: number
+    width:number
+    height: number
 
-    constructor(x, y, width, height) {
+    constructor(x?: number, y?: number, width?: number, height?: number) {
         this.x = x || 0
         this.y = y || 0
         this.width = width || 0
@@ -34,7 +38,7 @@ class Rectangle {
         }
     }
 
-    extend = (rect) => {
+    extend = (rect: Rectangle) => {
         if (rect.right > this.right) {
             this.width = rect.right - this.x
         }
@@ -58,7 +62,7 @@ class Rectangle {
         return `Rectangle x=${this.x}, y=${this.y}, width=${this.width}, height=${this.height}`
     }
 
-    static fromDOMRect(rect) {
+    static fromDOMRect(rect: DOMRect): Rectangle {
         return rect ? new Rectangle(rect.left, rect.top, rect.width, rect.height) : new Rectangle()
     }
 }
