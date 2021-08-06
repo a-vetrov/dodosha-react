@@ -1,9 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import { NAVIGATION_URL } from "../../__data__/constants";
+import {IPaintCategory} from "../../__data__/slices/paintSlice";
 
-const CategoryLink = ({title, url, items}) => {
+const CategoryLink = ({title, url, items}: IPaintCategory) => {
 
     return (
         <div>
@@ -15,10 +15,5 @@ const CategoryLink = ({title, url, items}) => {
     );
 };
 
-CategoryLink.propTypes = {
-    title: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired,
-    items: PropTypes.array.isRequired,
-};
 
 export default CategoryLink;
