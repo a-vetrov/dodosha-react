@@ -10,6 +10,7 @@ function PaintPage() {
     const dispatch = useAppDispatch()
 
     const loaded = useAppSelector((state) => state.paint.loaded)
+    const error = useAppSelector((state) => state.alphabet.error)
     const categories = useAppSelector((state) => state.paint.categories)
 
     useEffect(() => {
@@ -21,10 +22,9 @@ function PaintPage() {
         // eslint-disable-next-line
     }, [])
 
-    /*if (error){
+    if (error){
         return <ErrorMessage message='Ошибка загрузки'/>
     }
-     */
 
     if (!loaded)
         return null
@@ -33,7 +33,7 @@ function PaintPage() {
         <>
             <BackButton />
             <h1>Paint page</h1>
-            {categories.map((item) => <CategoryLink {...item}/>)}
+            {categories.map((item) => <CategoryLink {...item} key={item.title}/>)}
         </>
     );
 }

@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {AppDispatch} from "../store";
-import {changeLoadingState} from "./isLoadingSlice";
+import {fetchData} from "../actions/fetchData";
 
 export interface IWord {
     word: string
@@ -58,20 +57,7 @@ const { loadingCompleteSuccess, loadingCompleteError } = alphabetSlice.actions;
 
 const URL = process.env.PUBLIC_URL + '/alphabet/alphabet.json'
 
-//export const fetchAlphabetData = () =>  fetchData(URL, loadingCompleteSuccess, loadingCompleteError)
-export const fetchAlphabetData = () =>  (dispatch: AppDispatch) => {
-    dispatch(changeLoadingState(true))
-
-    fetch(URL)
-        .then((response) => {
-            dispatch(changeLoadingState(false))
-
-            return response;
-        })
-        .then((response) => response.json())
-        .then((data) => dispatch(loadingCompleteSuccess(data)))
-        .catch(() => dispatch(loadingCompleteError()))
-}
+export const fetchAlphabetData = () =>  fetchData(URL, loadingCompleteSuccess, loadingCompleteError)
 
 export const getLetters = (state: AlphabetState): string[] => state.letters.map(item => item.value)
 
