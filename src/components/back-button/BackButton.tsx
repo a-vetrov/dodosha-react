@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 import style from './BackButton.module.css'
 import {NO_GRAPHICS_MODE} from "../../__data__/constants";
 
-const calculateUpPathName = pathname => {
+const calculateUpPathName = (pathname: string) => {
     const arr = pathname.split('/')
     const last = arr.pop()
 

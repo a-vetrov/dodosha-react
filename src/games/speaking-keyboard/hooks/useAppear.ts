@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function useAppear(param) {
+function useAppear(param: any) {
     const [isAppear, setIsAppear] = useState(false)
     const [localParam, setLocalParam] = useState(param)
 

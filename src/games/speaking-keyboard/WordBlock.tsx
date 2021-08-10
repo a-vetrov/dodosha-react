@@ -7,7 +7,12 @@ import {getAlphabetURL} from "./utils";
 import {NO_GRAPHICS_MODE} from "../../__data__/constants";
 import useAppear from "./hooks/useAppear";
 
-const WordBlock = ({word, img,}) => {
+type WordBlockProps = {
+    word: string,
+    img: string,
+}
+
+const WordBlock = ({word, img,}: WordBlockProps) => {
 
     const {isAppear, onAnimationEnd, localParam:localWord} = useAppear(word)
 
@@ -24,7 +29,7 @@ const WordBlock = ({word, img,}) => {
 
     return (
         <div className={classnames(style.container, { [style.appear]: isAppear })} onAnimationEnd={onAnimationEnd}>
-            <div className={style.imageContainer} style={NO_GRAPHICS_MODE ? null : imgStyle}>
+            <div className={style.imageContainer} style={NO_GRAPHICS_MODE ? undefined : imgStyle}>
                 {NO_GRAPHICS_MODE ? img : ''}
             </div>
             <div className={style.word}>{localWord}</div>

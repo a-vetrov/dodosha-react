@@ -1,5 +1,5 @@
 import {AppDispatch} from "../store";
-import {changeLoading} from "../slices/isLoadingSlice";
+import {changeLoadingState} from "../slices/isLoadingSlice";
 import {ActionCreatorWithoutPayload, ActionCreatorWithPayload} from "@reduxjs/toolkit";
 
 type FunctionSuccess = ActionCreatorWithPayload<any, string>
@@ -8,11 +8,11 @@ type ResultType = (dispatch: AppDispatch) => any
 
 export const fetchData = (url: string, loadingCompleteSuccess: FunctionSuccess, loadingCompleteError: FunctionError): ResultType => (dispatch: AppDispatch) => {
 
-    dispatch(changeLoading(true))
+    dispatch(changeLoadingState(true))
 
     fetch(url)
         .then((response) => {
-            dispatch(changeLoading(false))
+            dispatch(changeLoadingState(false))
 
             return response;
         })

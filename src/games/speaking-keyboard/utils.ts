@@ -6,7 +6,7 @@ const ALPHABET_BASE_URL = '/alphabet/'
 
 export const getAlphabetURL = (url: string) => process.env.PUBLIC_URL + ALPHABET_BASE_URL + url
 
-export const getSoundURLs = ({mp3, letter, letterWord}: {mp3: string, letter: string, letterWord: string}) => {
+export const getSoundURLs = ({mp3, letter, letterWord}: {mp3?: string, letter: string, letterWord: string}) => {
     const arr = [
         getAlphabetURL(letterWord),
         getAlphabetURL(letter),

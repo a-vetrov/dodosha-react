@@ -1,11 +1,14 @@
 import React from 'react';
 import classnames from 'classnames'
-import PropTypes from 'prop-types';
 
 import style from './LetterBlock.module.css'
 import useAppear from "./hooks/useAppear";
 
-const LetterBlock = ({letter}) => {
+type LetterBlockProps = {
+    letter?: string
+}
+
+const LetterBlock = ({letter}: LetterBlockProps) => {
 
     const {isAppear, onAnimationEnd, localParam: localLetter} = useAppear(letter)
 
@@ -16,13 +19,5 @@ const LetterBlock = ({letter}) => {
         </div>
     );
 };
-
-LetterBlock.propTypes = {
-    letter: PropTypes.string,
-}
-
-LetterBlock.defaultProps = {
-    letter: null,
-}
 
 export default LetterBlock;

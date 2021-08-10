@@ -1,8 +1,6 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {fetchData} from "../actions/fetchData";
-import {changeLoadingState} from "../actions";
-import {fetchPaintDataError, fetchPaintDataSuccess} from "../actions/fetchPaintData";
 import {AppDispatch} from "../store";
+import { changeLoadingState } from "./isLoadingSlice";
 
 
 interface IPaintItem {

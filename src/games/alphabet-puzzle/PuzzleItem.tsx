@@ -1,4 +1,4 @@
-import React, {RefObject, useMemo} from 'react';
+import React, { useMemo} from 'react';
 import classnames from "classnames";
 
 import style from './PuzzleItem.module.css'
@@ -65,6 +65,7 @@ const PuzzleItem = React.forwardRef<HTMLDivElement, Props>(({item, onMouseDown, 
     }, null), [item, onMouseDown])
 
     const itemStyle = useMemo(() => getStyle(item.position, item.width, zIndex),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
         [item.position?.top, item.position?.left, item.width, zIndex])
 
     const letterArr = useMemo(() => item.letter.split(''), [item.letter])
