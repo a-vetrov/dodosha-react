@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import gsap from 'gsap'
 import confetti from 'canvas-confetti'
 
@@ -10,13 +9,30 @@ import style from './Puzzle.module.css'
 import {playSound} from "../../utils/soundUtils";
 import {getAlphabetURL} from "../speaking-keyboard/utils";
 import {isNotTouchable} from "../../utils/adaptive";
+import Item from "./data/Item";
+import {IDownEvent} from "./interfaces/IDownEvent";
 
 const GRAB_SHIFT = 4
 const defaultShift = {x: -GRAB_SHIFT, y: -GRAB_SHIFT}
 
-class Puzzle extends Component{
+type PuzzlePropType = {
+    word: string,
+    img: string,
+    mp3: string,
+    onComplete: () => void
+}
 
-    constructor(props) {
+type PuzzleStateType = {
+    puzzleStructure: PuzzleStructure | null,
+    currentItemIndex: number | null,
+    currentItemShift: {x: number, y: number},
+    enabled: boolean,
+
+}
+
+class Puzzle extends Component<PuzzlePropType, PuzzleStateType>{
+
+    constructor(props: PuzzlePropType) {
         super(props);
 
         this.state = {
@@ -32,7 +48,7 @@ class Puzzle extends Component{
         window.addEventListener('resize', this.handleWindowResize)
     }
 
-    componentDidUpdate(prevProps) {
+    componentDidUpdate(prevProps: PuzzlePropType) {
         if (this.props.word !== prevProps.word) {
             this.createPuzzleStructure()
         }
@@ -57,8 +73,8 @@ class Puzzle extends Component{
         playSound({url:getAlphabetURL(mp3)})
     }
 
-    startAppearAnimation = (puzzleStructure) => {
-        const arr = puzzleStructure.list.map(item => item.position)
+    startAppearAnimation = (puzzleStructure: PuzzleStructure) => {
+        const arr = puzzleStructure.list.map(item => item.position || {top: 0})
         const top = arr[0].top
         arr.forEach(item => item.top = -1000)
 
@@ -76,6 +92,9 @@ class Puzzle extends Component{
 
     startFinalAnimation = () => {
         const {puzzleStructure} = this.state
+        if (!puzzleStructure)
+            return
+
         this.setState({enabled: false})
 
         confetti({
@@ -106,7 +125,7 @@ class Puzzle extends Component{
         })
     }
 
-    handleWindowResize = (e) => {
+    handleWindowResize = () => {
         const {puzzleStructure} = this.state
 
         if (puzzleStructure) {
@@ -115,10 +134,10 @@ class Puzzle extends Component{
         }
     }
 
-    handleMouseDown = (e, item) => {
+    handleMouseDown = (e: IDownEvent, item: Item) => {
         const {puzzleStructure, enabled} = this.state
 
-        if (!enabled) {
+        if (!enabled || !puzzleStructure) {
             return
         }
 
@@ -133,6 +152,9 @@ class Puzzle extends Component{
         }
 
         const currentItem = puzzleStructure.getItem(currentItemIndex)
+        if (!currentItem || !currentItem.position)
+            return
+
         const {left, top} = currentItem.position
         currentItem.setPosition(left - GRAB_SHIFT, top - GRAB_SHIFT)
         puzzleStructure.setOnTop(currentItem)
@@ -140,8 +162,11 @@ class Puzzle extends Component{
         this.setState({currentItemIndex, currentItemShift, puzzleStructure})
     }
 
-    handleMouseMove = (e) => {
+    handleMouseMove = (e: IDownEvent) => {
         const {puzzleStructure, currentItemIndex, currentItemShift} = this.state
+
+        if (!puzzleStructure || !currentItemIndex)
+            return
 
         const currentItem = puzzleStructure.getItem(currentItemIndex)
 
@@ -151,8 +176,11 @@ class Puzzle extends Component{
         }
     }
 
-    handleTouchMove = (e) => {
+    handleTouchMove = (e: React.TouchEvent) => {
         const {puzzleStructure, currentItemIndex, currentItemShift} = this.state
+
+        if (!puzzleStructure || !currentItemIndex)
+            return
 
         const currentItem = puzzleStructure.getItem(currentItemIndex)
 
@@ -166,7 +194,13 @@ class Puzzle extends Component{
     handleMouseUp = () => {
         const {currentItemIndex, puzzleStructure} = this.state
 
+        if (!puzzleStructure || !currentItemIndex)
+            return
+
         const currentItem = puzzleStructure.getItem(currentItemIndex)
+
+        if (!currentItem || !currentItem.position)
+            return
 
         if (!this.joinToNeighbor()) {
             const {left, top} = currentItem.position
@@ -181,12 +215,19 @@ class Puzzle extends Component{
 
     joinToNeighbor = () => {
         const {currentItemIndex, puzzleStructure} = this.state
+
+        if (!puzzleStructure || !currentItemIndex)
+            return
+
         const currentItem = puzzleStructure.getItem(currentItemIndex)
 
-        if (currentItem.closeToTheLeftItem()) {
+        if (!currentItem)
+            return
+
+        if (currentItem.leftItem && currentItem.closeToTheLeftItem()) {
             puzzleStructure.join(currentItem.leftItem, currentItem)
             return true
-        } else if (currentItem.closeToTheRightItem()) {
+        } else if (currentItem.rightItem && currentItem.closeToTheRightItem()) {
             puzzleStructure.join(currentItem, currentItem.rightItem)
             return true
         }
@@ -233,17 +274,6 @@ class Puzzle extends Component{
         )
     }
 
-}
-
-Puzzle.propTypes = {
-    word: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
-    mp3: PropTypes.string.isRequired,
-    onComplete: PropTypes.func
-}
-
-Puzzle.defaultTypes = {
-    onComplete: null,
 }
 
 export default Puzzle;

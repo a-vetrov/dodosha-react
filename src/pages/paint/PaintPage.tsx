@@ -1,9 +1,9 @@
 import React, {useEffect} from 'react';
-import {fetchPaintData} from "../../__data__/actions/fetchPaintData";
 import ErrorMessage from "../../components/error-message/ErrorMessage";
 import BackButton from "../../components/back-button/BackButton";
 import CategoryLink from "./CategoryLink";
 import {useAppDispatch, useAppSelector} from "../../__data__/hooks";
+import {fetchPaintData} from "../../__data__/slices/paintSlice";
 
 function PaintPage() {
 
@@ -14,8 +14,9 @@ function PaintPage() {
 
     useEffect(() => {
         if (!loaded) {
+
             // @ts-ignore
-            dispatch(fetchPaintData)
+            dispatch(fetchPaintData())
         }
         // eslint-disable-next-line
     }, [])

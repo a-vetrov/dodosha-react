@@ -1,14 +1,23 @@
-import React, {useMemo} from 'react';
+import React, {RefObject, useMemo} from 'react';
 import classnames from "classnames";
-import PropTypes from 'prop-types';
 
 import style from './PuzzleItem.module.css'
 import {getAlphabetURL} from "../speaking-keyboard/utils";
 import {NO_GRAPHICS_MODE} from "../../__data__/constants";
 import {applyForNotTouchable, applyForTouchable,} from "../../utils/adaptive";
+import Item, {IPosition} from "./data/Item";
+import {IDownEvent} from "./interfaces/IDownEvent";
 
-const getStyle = (position, width, zIndex) => {
-    const s = {zIndex}
+
+interface IStyle {
+    zIndex: number,
+    width?: string,
+    left?: string,
+    top?: string
+}
+
+const getStyle = (position: IPosition | null, width: number, zIndex: number) => {
+    const s: IStyle = {zIndex}
 
     if (position) {
         s.left = `${position.left}px`
@@ -20,7 +29,13 @@ const getStyle = (position, width, zIndex) => {
     return s
 }
 
-const getPictureStyle = (img, shift) => {
+interface IPictureStyle {
+    backgroundImage: string,
+    backgroundPositionX: string,
+    backgroundPositionY: string
+}
+
+const getPictureStyle = (img: string, shift: number): IPictureStyle => {
     const url = getAlphabetURL(img)
     return {
         backgroundImage: NO_GRAPHICS_MODE ? 'none' : `url(${url})`,
@@ -29,18 +44,28 @@ const getPictureStyle = (img, shift) => {
     }
 }
 
-const PuzzleItem = React.forwardRef(({item, onMouseDown, grabbing, zIndex, img}, ref) => {
+type Props = {
+    item: Item,
+    onMouseDown : (e: IDownEvent, item: Item) => void,
+    grabbing: boolean,
+    zIndex: number,
+    img: string,
+}
 
-    const handleMouseDown = useMemo(() => applyForNotTouchable((e) => onMouseDown(e, item), null), [item, onMouseDown])
+const PuzzleItem = React.forwardRef<HTMLDivElement, Props>(({item, onMouseDown, grabbing, zIndex, img}, ref) => {
 
-    const handleTouchStart = useMemo(() => applyForTouchable((e) => {
-        if (e.targetTouches.length) {
+    const handleMouseDown = useMemo(() => applyForNotTouchable((e: IDownEvent) => onMouseDown(e, item), null),
+        [item, onMouseDown])
+
+    const handleTouchStart = useMemo(() => applyForTouchable((e: React.TouchEvent) => {
+        if (e.targetTouches && e.targetTouches.length) {
             const {clientX, clientY} = e.targetTouches[0]
             onMouseDown({clientX, clientY}, item)
         }
     }, null), [item, onMouseDown])
 
-    const itemStyle = useMemo(() => getStyle(item.position, item.width, zIndex), [item.position.top, item.position.left, item.width, zIndex])
+    const itemStyle = useMemo(() => getStyle(item.position, item.width, zIndex),
+        [item.position?.top, item.position?.left, item.width, zIndex])
 
     const letterArr = useMemo(() => item.letter.split(''), [item.letter])
 
@@ -61,12 +86,5 @@ const PuzzleItem = React.forwardRef(({item, onMouseDown, grabbing, zIndex, img},
     )
 })
 
-PuzzleItem.propTypes = {
-    item: PropTypes.object.isRequired,
-    grabbing: PropTypes.bool.isRequired,
-    onMouseDown: PropTypes.func,
-    zIndex: PropTypes.number.isRequired,
-    img: PropTypes.string.isRequired,
-}
 
 export default PuzzleItem

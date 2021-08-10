@@ -1,5 +1,8 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {fetchData} from "../actions/fetchData";
+import {changeLoadingState} from "../actions";
+import {fetchPaintDataError, fetchPaintDataSuccess} from "../actions/fetchPaintData";
+import {AppDispatch} from "../store";
 
 
 interface IPaintItem {
@@ -43,6 +46,19 @@ const { loadingCompleteSuccess, loadingCompleteError } = paintSlice.actions;
 
 const URL = process.env.PUBLIC_URL + '/paint/paint.json'
 
-export const fetchPaintData = fetchData(URL, loadingCompleteSuccess, loadingCompleteError)
+export const fetchPaintData = () => (dispatch: AppDispatch) => {
+
+    dispatch(changeLoadingState(true))
+
+    fetch(URL)
+        .then((response) => {
+            dispatch(changeLoadingState(false))
+
+            return response;
+        })
+        .then((response) => response.json())
+        .then((data) => dispatch(loadingCompleteSuccess(data)))
+        .catch(() => dispatch(loadingCompleteError()))
+};
 
 export default paintSlice.reducer;

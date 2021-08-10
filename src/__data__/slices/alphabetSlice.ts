@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {fetchData} from "../actions/fetchData";
 
-interface IWord {
+export interface IWord {
     word: string
     img: string
     mp3: string
@@ -51,6 +51,6 @@ const { loadingCompleteSuccess, loadingCompleteError } = alphabetSlice.actions;
 
 const URL = process.env.PUBLIC_URL + '/alphabet/alphabet.json'
 
-export const fetchPaintData = () =>  fetchData(URL, loadingCompleteSuccess, loadingCompleteError)
+export const fetchAlphabetData = () =>  fetchData(URL, loadingCompleteSuccess, loadingCompleteError)
 
 export default alphabetSlice.reducer;

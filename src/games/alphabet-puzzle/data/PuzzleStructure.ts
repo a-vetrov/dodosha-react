@@ -1,9 +1,14 @@
 import _ from 'lodash'
-import Item from "./Item";
+import Item, {IPosition} from "./Item";
 import Rectangle from "../../../utils/geom/Rectangle";
 
-const getDefaultPosition = (index, dimensions) => {
+interface IDimensions {
+    width: number,
+    gap: number,
+    padding: number
+}
 
+const getDefaultPosition = (index: number, dimensions: IDimensions): IPosition => {
     return {
         top: 0.2*window.innerHeight,
         left: dimensions.padding + (dimensions.width + dimensions.gap) * index,
@@ -12,11 +17,17 @@ const getDefaultPosition = (index, dimensions) => {
 
 class PuzzleStructure {
 
-    constructor(word) {
+    word: string
+
+    list: Item[]
+
+    dimensions: IDimensions
+
+    constructor(word: string) {
 
         this.word = word
 
-        this.list = word.split('').map((s, index) => new Item(s, index))
+        this.list = word.split('').map((s: string, index: number) => new Item(s, index))
 
         this.list.forEach((item, index) => {
             if (index > 0) {
@@ -37,7 +48,7 @@ class PuzzleStructure {
         this.updateBackgroundShift()
     }
 
-    getItemDimensions = () => {
+    getItemDimensions = (): IDimensions => {
         const w = Math.min(window.innerWidth, window.innerHeight)
         const count = this.list.length
         const effectiveCount = count + (count - 1) / 2 + 1
@@ -50,14 +61,16 @@ class PuzzleStructure {
         }
     }
 
-    updateDimensions = () => {
+    getListUnion = (): Rectangle | null => {
         this.dimensions = this.getItemDimensions()
-        const maxX = window.innerWidth, maxY = window.innerHeight
 
-        let union
+        let union: Rectangle | null = null
 
         this.list.forEach((item, index) => {
-            const rect = Rectangle.fromDOMRect(item.getBounds())
+            const domRect = item.getBounds()
+            if (!domRect)
+                return
+            const rect = Rectangle.fromDOMRect(domRect)
             item.width = item.letter.length * this.dimensions.width
             rect.width = item.width
 
@@ -67,6 +80,17 @@ class PuzzleStructure {
                 union = rect
             }
         })
+
+        return union
+    }
+
+    updateDimensions = () => {
+        const maxX = window.innerWidth, maxY = window.innerHeight
+
+        const union = this.getListUnion()
+
+        if (!union)
+            return;
 
         if (union.right <= maxX && union.bottom <= maxY) {
             return
@@ -81,30 +105,34 @@ class PuzzleStructure {
         if (union.width > maxX) {
             const ratio = maxX / union.width * 0.9
             this.list.forEach((item) => {
-                const delta =  (center.x - item.position.left) * (1 - ratio)
-                item.shift(delta)
+                if (item.position) {
+                    const delta = (center.x - item.position.left) * (1 - ratio)
+                    item.shift(delta)
+                }
             })
         }
 
         if (union.height > maxY) {
             const ratio = maxY / union.height * 0.9
             this.list.forEach((item) => {
-                const delta = (center.y - item.position.top) * (1 - ratio)
-                item.shift(0, delta)
+                if (item.position) {
+                    const delta = (center.y - item.position.top) * (1 - ratio)
+                    item.shift(0, delta)
+                }
             })
         }
 
     }
 
-    getItem = index => this.list.find(item => item.index === index)
+    getItem = (index: number) => this.list.find(item => item.index === index)
 
-    setOnTop = item => {
+    setOnTop = (item: Item) => {
         const arr = _.without(this.list, item)
         arr.push(item)
         this.list = arr
     }
 
-    join = (item1, item2) => {
+    join = (item1: Item, item2: Item) => {
         item1.letter += item2.letter
         item1.rightItem = item2.rightItem
         if (item1.rightItem) {
@@ -119,7 +147,9 @@ class PuzzleStructure {
 
     updateBackgroundShift = () => {
         let dw = 0
-        let item = this.getItem(0)
+        let item: Item | null | undefined = this.getItem(0)
+        if (!item)
+            return
         do  {
             item.backgroundShift = dw
             dw -= item.width

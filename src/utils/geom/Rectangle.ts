@@ -62,6 +62,7 @@ class Rectangle {
         return `Rectangle x=${this.x}, y=${this.y}, width=${this.width}, height=${this.height}`
     }
 
+    static fromDOMRect(rect: {left:number, top: number, width: number, height: number}): Rectangle
     static fromDOMRect(rect: DOMRect): Rectangle {
         return rect ? new Rectangle(rect.left, rect.top, rect.width, rect.height) : new Rectangle()
     }
