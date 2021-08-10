@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { NAVIGATION_URL } from "../../__data__/constants";
 import {IPaintCategory} from "../../__data__/slices/paintSlice";
 
-const CategoryLink = ({title, url, items}: IPaintCategory) => {
+const CategoryLink = ({title, url}: IPaintCategory) => {
 
     return (
         <div>

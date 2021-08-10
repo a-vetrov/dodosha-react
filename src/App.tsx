@@ -11,6 +11,8 @@ import LoadingIcon from "./components/loading-icon/LoadingIcon";
 import {store} from "./__data__/store";
 import SpeakingKeyboard from "./games/speaking-keyboard/SpeakingKeyboard";
 import AlphabetPuzzle from "./games/alphabet-puzzle/AlphabetPuzzle";
+import PaintCategory from "./pages/paint/PaintCategory";
+import PaintItem from './pages/paint/PaintItem';
 
 function App() {
     return (
@@ -20,7 +22,13 @@ function App() {
                 <LoadingIcon />
                 <div className={style.content}>
                     <Switch>
-                        <Route path={NAVIGATION_URL.PAINT}>
+                        <Route path={`${NAVIGATION_URL.PAINT}/:category/:id`}>
+                            <PaintItem/>
+                        </Route>
+                        <Route path={`${NAVIGATION_URL.PAINT}/:category`}>
+                            <PaintCategory/>
+                        </Route>
+                        <Route path={NAVIGATION_URL.PAINT} exact>
                             <PaintPage/>
                         </Route>
                         <Route path={NAVIGATION_URL.ALPHABET} exact>

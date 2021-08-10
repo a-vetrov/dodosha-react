@@ -45,5 +45,6 @@ const URL = process.env.PUBLIC_URL + '/paint/paint.json'
 
 export const fetchPaintData = () =>  fetchData(URL, loadingCompleteSuccess, loadingCompleteError)
 
+export const getCategoryByUrl = (state: PaintState, url: string) => state.categories.find(item => item.url === url)
 
 export default paintSlice.reducer;
