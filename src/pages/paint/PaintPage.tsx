@@ -1,26 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import ErrorMessage from "../../components/error-message/ErrorMessage";
 import BackButton from "../../components/back-button/BackButton";
 import CategoryLink from "./CategoryLink";
-import {useAppDispatch, useAppSelector} from "../../__data__/hooks";
-import {fetchPaintData} from "../../__data__/slices/paintSlice";
+import {useAppSelector} from "../../__data__/hooks";
+import usePaintLoader from "./hooks/usePaintLoader";
 
 function PaintPage() {
 
-    const dispatch = useAppDispatch()
-
-    const loaded = useAppSelector((state) => state.paint.loaded)
-    const error = useAppSelector((state) => state.alphabet.error)
     const categories = useAppSelector((state) => state.paint.categories)
 
-    useEffect(() => {
-        if (!loaded) {
-
-            // @ts-ignore
-            dispatch(fetchPaintData())
-        }
-        // eslint-disable-next-line
-    }, [])
+    const {loaded, error} = usePaintLoader()
 
     if (error){
         return <ErrorMessage message='Ошибка загрузки'/>

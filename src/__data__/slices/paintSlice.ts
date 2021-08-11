@@ -17,12 +17,20 @@ interface IPaintData {
 }
 
 interface PaintState extends IPaintData {
-    loaded:boolean
+    loaded:boolean,
+    color: {
+        main: string,
+        current: string,
+    }
 }
 
 const initialState: PaintState = {
     loaded: false,
     categories: [],
+    color: {
+        main: '#ff0000',
+        current: '#ff0000',
+    }
 }
 
 export const paintSlice = createSlice({
@@ -36,15 +44,24 @@ export const paintSlice = createSlice({
         loadingCompleteError: (state: PaintState) => {
             state.loaded = false
         },
+        setMainColor: (state: PaintState, color: PayloadAction<string>) => {
+            state.color.main = state.color.current = color.payload
+        },
     },
 })
 
-const { loadingCompleteSuccess, loadingCompleteError } = paintSlice.actions;
+const { loadingCompleteSuccess, loadingCompleteError, setMainColor } = paintSlice.actions;
+
+export {setMainColor}
 
 const URL = process.env.PUBLIC_URL + '/paint/paint.json'
 
 export const fetchPaintData = () =>  fetchData(URL, loadingCompleteSuccess, loadingCompleteError)
 
 export const getCategoryByUrl = (state: PaintState, url: string) => state.categories.find(item => item.url === url)
+
+export const getMainColor = (state: PaintState) => state.color.main
+
+export const getCurrentColor = (state: PaintState) => state.color.current
 
 export default paintSlice.reducer;

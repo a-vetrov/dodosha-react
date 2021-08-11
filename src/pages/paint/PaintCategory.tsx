@@ -6,6 +6,9 @@ import ErrorMessage from "../../components/error-message/ErrorMessage";
 import ItemLink from "./ItemLink";
 import BackButton from "../../components/back-button/BackButton";
 
+import style from './PaintCategory.module.css'
+import usePaintLoader from "./hooks/usePaintLoader";
+
 interface ICategoryType {
     category: string
 }
@@ -13,6 +16,15 @@ interface ICategoryType {
 const PaintCategory = () => {
     const {category: url} = useParams<ICategoryType>()
     const category = useAppSelector((state) => getCategoryByUrl(state.paint, url))
+
+    const {loaded, error} = usePaintLoader()
+
+    if (error){
+        return <ErrorMessage message='Ошибка загрузки'/>
+    }
+
+    if (!loaded)
+        return null
 
     if (!category)
         return <ErrorMessage message='Категория не найдена'/>
@@ -23,10 +35,10 @@ const PaintCategory = () => {
             <div>
                 <h1>{category.title}</h1>
 
-                Paint category {url}
-
-                {category.items.map((item, index) =>
-                    <ItemLink categoryUrl={url} svg={item.svg} index={index} key={item.svg}/>)}
+                <div className={style['image-container']}>
+                    {category.items.map((item, index) =>
+                        <ItemLink categoryUrl={url} svg={item.svg} index={index} key={item.svg}/>)}
+                </div>
             </div>
         </>
     );

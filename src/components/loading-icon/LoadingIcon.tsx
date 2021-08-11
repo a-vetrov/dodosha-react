@@ -9,9 +9,17 @@ const loadingComponent = (
     </div>
 )
 
-const LoadingIcon = () => {
+type LoadingIconProps = {
+    useGlobalState?: boolean
+}
+
+const LoadingIcon = ({useGlobalState = true}: LoadingIconProps) => {
     const isLoading = useAppSelector((state => state.isLoading))
-    return isLoading ? loadingComponent : null
+    if (useGlobalState) {
+        return isLoading ? loadingComponent : null
+    } else {
+        return loadingComponent
+    }
 }
 
 export default LoadingIcon

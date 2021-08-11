@@ -5,13 +5,19 @@
       "url": "категория1",
       "items": [
         {
-          "svg": "1.svg"
+          "svg": "test/1.svg"
         },
         {
-          "svg": "2.svg"
+          "svg": "test/2.svg"
         },
         {
-          "svg": "3.svg"
+          "svg": "test/3.svg"
+        },
+        {
+          "svg": "test/4.svg"
+        },
+        {
+          "svg": "test/5.svg"
         }
       ]
     },
@@ -20,13 +26,13 @@
       "url": "категория2",
       "items": [
         {
-          "svg": "1.svg"
+          "svg": "test/1.svg"
         },
         {
-          "svg": "2.svg"
+          "svg": "test/2.svg"
         },
         {
-          "svg": "3.svg"
+          "svg": "test/3.svg"
         }
       ]
     },
@@ -35,13 +41,13 @@
       "url": "категория3",
       "items": [
         {
-          "svg": "1.svg"
+          "svg": "test/1.svg"
         },
         {
-          "svg": "2.svg"
+          "svg": "test/2.svg"
         },
         {
-          "svg": "3.svg"
+          "svg": "test/3.svg"
         }
       ]
     }

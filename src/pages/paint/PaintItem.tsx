@@ -4,17 +4,28 @@ import BackButton from "../../components/back-button/BackButton";
 import {useAppSelector} from "../../__data__/hooks";
 import {getCategoryByUrl} from "../../__data__/slices/paintSlice";
 import ErrorMessage from "../../components/error-message/ErrorMessage";
+import usePaintLoader from "./hooks/usePaintLoader";
+import PaintModule from '../../games/paint/PaintModule';
 
 interface IUrlParams {
-    categoryUrl: string,
+    category: string,
     id: string,
 }
 
 const PaintItem = () => {
 
-    const {categoryUrl, id} = useParams<IUrlParams>()
+    const {category: categoryUrl, id} = useParams<IUrlParams>()
 
     const category = useAppSelector((state) => getCategoryByUrl(state.paint, categoryUrl))
+
+    const {loaded, error} = usePaintLoader()
+
+    if (error){
+        return <ErrorMessage message='Ошибка загрузки'/>
+    }
+
+    if (!loaded)
+        return null
 
     if (!category)
         return <ErrorMessage message='Категория не найдена'/>
@@ -27,9 +38,7 @@ const PaintItem = () => {
     return (
         <>
             <BackButton />
-            <div>
-                <h1>Paint item {category} {id}</h1>
-            </div>
+            <PaintModule src={`${process.env.PUBLIC_URL}/paint/${item.svg}`}/>
         </>
     );
 };
