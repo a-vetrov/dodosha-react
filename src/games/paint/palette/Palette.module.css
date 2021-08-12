@@ -1,15 +1,19 @@
 .container {
-    width: 200px;
+    min-width: 180px;
     padding: 10px;
     border-radius: 4px;
     border: 1px solid lightgrey;
     display: flex;
     flex-wrap: wrap;
+    gap: 20px;
+    background-color: #efefef;
 }
 
 .item {
-    width: 80px;
-    height: 80px;
-    border-radius: 4px;
+    width: 76px;
+    height: 76px;
+    border-radius: 8px;
     background-color: #a9d2f3;
+    box-shadow: inset #ffffff 0 5px 8px -1px, #d6d6d6 1px 3px 2px;
+    border: 2px solid;
 }

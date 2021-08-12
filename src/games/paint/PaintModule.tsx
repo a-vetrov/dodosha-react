@@ -20,6 +20,7 @@ const SVG = React.memo(({src}: PaintModuleProps) => (
         fallback={() => <ErrorMessage message='Ошибка загрузки раскраски'/>}
         loading={() => <LoadingIcon useGlobalState={false}/>}
         src={src}
+        className={style.svg}
     />
 ), (prevProps, nextProps) => {
     return prevProps.src === nextProps.src

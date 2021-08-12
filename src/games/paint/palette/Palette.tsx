@@ -5,7 +5,7 @@ import {colors} from "./config";
 import {useAppDispatch} from "../../../__data__/hooks";
 import {setMainColor} from "../../../__data__/slices/paintSlice";
 
-const getStyle = (color: string): CSSProperties => ({backgroundColor: color})
+const getStyle = (color: string): CSSProperties => ({backgroundColor: color, borderColor: color})
 
 const Palette = () => {
 
