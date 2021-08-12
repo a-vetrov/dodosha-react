@@ -47,12 +47,15 @@ export const paintSlice = createSlice({
         setMainColor: (state: PaintState, color: PayloadAction<string>) => {
             state.color.main = state.color.current = color.payload
         },
+        setCurrentColor: (state: PaintState, color: PayloadAction<string>) => {
+            state.color.current = color.payload
+        },
     },
 })
 
-const { loadingCompleteSuccess, loadingCompleteError, setMainColor } = paintSlice.actions;
+const { loadingCompleteSuccess, loadingCompleteError, setMainColor, setCurrentColor } = paintSlice.actions;
 
-export {setMainColor}
+export {setMainColor, setCurrentColor}
 
 const URL = process.env.PUBLIC_URL + '/paint/paint.json'
 

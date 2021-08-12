@@ -1,4 +1,4 @@
-.container {
+.colorsContainer {
     display: flex;
     flex-direction: column;
     background: white;
@@ -40,7 +40,7 @@
 }
 
 @media (max-aspect-ratio: 3/4) {
-    .container {
+    .colorsContainer {
         padding: 2vw;
         width: 38vw;
         height: 38vw;

@@ -4,8 +4,14 @@ import style from './Palette.module.css'
 import {colors} from "./config";
 import {useAppDispatch} from "../../../__data__/hooks";
 import {setMainColor} from "../../../__data__/slices/paintSlice";
+import {interpolateColor} from "../../../utils/interpolateColor";
 
-const getStyle = (color: string): CSSProperties => ({backgroundColor: color, borderColor: color})
+const getGradient = (color: string): string | undefined => {
+    const factor = color === '#ffffff' ? 0.1 : 0.3
+    return `linear-gradient(to bottom, ${color}, ${interpolateColor(color, '#000000', factor)})`
+}
+
+const getStyle = (color: string): CSSProperties => ({backgroundColor: color, borderColor: color, background: getGradient(color)})
 
 const Palette = () => {
 
@@ -16,12 +22,12 @@ const Palette = () => {
     }
 
     return (
-        <div className={style.container}>
+        <div className={style.colorsContainer}>
             {
-                colors.map((color: string) => <div className={style.item} style={getStyle(color)} onClick={handleClick(color)}/>)
+                colors.map((color: string) => <div className={style.item} style={getStyle(color)} onClick={handleClick(color)} key={color}/>)
             }
         </div>
     );
 };
 
-export default Palette;
+export default React.memo(Palette);
