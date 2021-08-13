@@ -28,6 +28,7 @@ const SemiColorBar = () => {
             <div className={style.semiColorBarItem}
                  style={{backgroundColor: color}}
                  onClick={handleClick(color)}
+                 key={color}
             />
             ))
     }
