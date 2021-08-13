@@ -165,7 +165,7 @@ class Puzzle extends Component<PuzzlePropType, PuzzleStateType>{
     handleMouseMove = (e: IDownEvent) => {
         const {puzzleStructure, currentItemIndex, currentItemShift} = this.state
 
-        if (!puzzleStructure || !currentItemIndex)
+        if (!puzzleStructure || currentItemIndex === null)
             return
 
         const currentItem = puzzleStructure.getItem(currentItemIndex)
@@ -179,7 +179,7 @@ class Puzzle extends Component<PuzzlePropType, PuzzleStateType>{
     handleTouchMove = (e: React.TouchEvent) => {
         const {puzzleStructure, currentItemIndex, currentItemShift} = this.state
 
-        if (!puzzleStructure || !currentItemIndex)
+        if (!puzzleStructure || currentItemIndex === null)
             return
 
         const currentItem = puzzleStructure.getItem(currentItemIndex)
@@ -194,7 +194,7 @@ class Puzzle extends Component<PuzzlePropType, PuzzleStateType>{
     handleMouseUp = () => {
         const {currentItemIndex, puzzleStructure} = this.state
 
-        if (!puzzleStructure || !currentItemIndex)
+        if (!puzzleStructure || currentItemIndex === null)
             return
 
         const currentItem = puzzleStructure.getItem(currentItemIndex)
@@ -216,7 +216,7 @@ class Puzzle extends Component<PuzzlePropType, PuzzleStateType>{
     joinToNeighbor = () => {
         const {currentItemIndex, puzzleStructure} = this.state
 
-        if (!puzzleStructure || !currentItemIndex)
+        if (!puzzleStructure || currentItemIndex === null)
             return
 
         const currentItem = puzzleStructure.getItem(currentItemIndex)
