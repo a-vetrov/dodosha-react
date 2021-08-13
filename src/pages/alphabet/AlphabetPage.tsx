@@ -1,13 +1,17 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import {NAVIGATION_URL, NO_GRAPHICS_MODE} from "../../__data__/constants";
+import {NAVIGATION_URL, NO_GRAPHICS_MODE, TITLE} from "../../__data__/constants";
 import speakingKeyboardIcon from './images/speaking-keyboard-icon.svg'
 import alphabetPuzzleIcon from './images/alphabet-puzzle-icon.svg'
 import style from './AlphabetPage.module.css'
 import BackButton from "../../components/back-button/BackButton";
+import useTitle from '../../utils/hooks/useTitle';
 
 
 function AlphabetPage() {
+
+    useTitle(TITLE.ALPHABET)
+
     return (
         <>
             <BackButton />

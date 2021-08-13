@@ -6,6 +6,8 @@ import ErrorMessage from "../../components/error-message/ErrorMessage";
 import Puzzle from "./Puzzle";
 import {useAppDispatch, useAppSelector} from "../../__data__/hooks";
 import {fetchAlphabetData, getShortWords, IWord} from "../../__data__/slices/alphabetSlice";
+import useTitle from "../../utils/hooks/useTitle";
+import {TITLE} from "../../__data__/constants";
 
 const AlphabetPuzzle = () => {
 
@@ -19,6 +21,8 @@ const AlphabetPuzzle = () => {
     const setRandomCurrentWord = () => {
         setCurrentWord(_.sample(words))
     }
+
+    useTitle(TITLE.ALPHABET_ALPHABET_PUZZLE)
 
     useEffect(() => {
         if (!loaded){ // @ts-ignore

@@ -8,6 +8,7 @@ import BackButton from "../../components/back-button/BackButton";
 
 import style from './PaintCategory.module.css'
 import usePaintLoader from "./hooks/usePaintLoader";
+import useTitle from "../../utils/hooks/useTitle";
 
 interface ICategoryType {
     category: string
@@ -18,6 +19,8 @@ const PaintCategory = () => {
     const category = useAppSelector((state) => getCategoryByUrl(state.paint, url))
 
     const {loaded, error} = usePaintLoader()
+
+    useTitle(category?.title)
 
     if (error){
         return <ErrorMessage message='Ошибка загрузки'/>

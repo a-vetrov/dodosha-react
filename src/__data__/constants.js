@@ -7,3 +7,11 @@ export const NAVIGATION_URL = {
 }
 
 export const NO_GRAPHICS_MODE = true
+
+export const TITLE = {
+    MAIN: 'Додоша - развивающие игры для детей',
+    PAINT: 'Раскраски онлайн - Додоша',
+    ALPHABET: 'Изучаем алфавит - Додоша',
+    ALPHABET_SPEAKING_KEYBOARD: 'Говорящий алфавит - Додоша',
+    ALPHABET_ALPHABET_PUZZLE: 'Собери слово - Додоша',
+}

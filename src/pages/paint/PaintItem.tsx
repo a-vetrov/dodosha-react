@@ -6,6 +6,7 @@ import {getCategoryByUrl} from "../../__data__/slices/paintSlice";
 import ErrorMessage from "../../components/error-message/ErrorMessage";
 import usePaintLoader from "./hooks/usePaintLoader";
 import PaintModule from '../../games/paint/PaintModule';
+import useTitle from "../../utils/hooks/useTitle";
 
 interface IUrlParams {
     category: string,
@@ -19,6 +20,8 @@ const PaintItem = () => {
     const category = useAppSelector((state) => getCategoryByUrl(state.paint, categoryUrl))
 
     const {loaded, error} = usePaintLoader()
+
+    useTitle(category?.title)
 
     if (error){
         return <ErrorMessage message='Ошибка загрузки'/>

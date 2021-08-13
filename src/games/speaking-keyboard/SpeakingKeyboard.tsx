@@ -12,6 +12,8 @@ import ErrorMessage from "../../components/error-message/ErrorMessage";
 import style from './SpeakingKeyboard.module.css'
 import {useAppDispatch, useAppSelector} from "../../__data__/hooks";
 import {fetchAlphabetData, getLettersURLDict, IWord} from "../../__data__/slices/alphabetSlice";
+import useTitle from "../../utils/hooks/useTitle";
+import {TITLE} from "../../__data__/constants";
 
 const SpeakingKeyboard = () => {
 
@@ -24,6 +26,8 @@ const SpeakingKeyboard = () => {
 
     const [currentLetter, setCurrentLetter] = useState<string | undefined>(undefined)
     const [currentWord, setCurrentWord] = useState<IWord | undefined>(undefined)
+
+    useTitle(TITLE.ALPHABET_SPEAKING_KEYBOARD)
 
     useEffect(() => {
         if (!loaded){ // @ts-ignore
