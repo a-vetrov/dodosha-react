@@ -13,5 +13,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   user-select: none;
   background: #efefef;
+  box-sizing: border-box;
 }
 

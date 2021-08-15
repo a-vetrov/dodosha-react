@@ -14,9 +14,6 @@ type PaintModuleProps = {
 
 const SVG = React.memo(({src}: PaintModuleProps) => (
     <ReactSVG
-        beforeInjection={(svg) => {
-            svg.setAttribute('style', 'width: calc(100vw - 400px); height: 80vh')
-        }}
         fallback={() => <ErrorMessage message='Ошибка загрузки раскраски'/>}
         loading={() => <LoadingIcon useGlobalState={false}/>}
         src={src}
@@ -42,7 +39,9 @@ const PaintModule = ({src}: PaintModuleProps) => {
 
     return (
         <div className={style.mainContainer} onClick={handleClick}>
-            <SVG src={src} />
+            <div className={style.canvasHolder}>
+                <SVG src={src} />
+            </div>
             <PaletteToolbox />
         </div>
     );

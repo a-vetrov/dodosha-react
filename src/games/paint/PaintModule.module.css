@@ -1,7 +1,8 @@
 .mainContainer {
     box-sizing: border-box;
     width: 100vw;
-    height: 100vh;
+    height: 90vh;
+    margin: 5vh 0;
     padding: 5vh;
     display: flex;
     align-items: center;
@@ -9,33 +10,36 @@
     gap: 20px;
 }
 
+.canvasHolder {
+    flex-grow: 2;
+    padding: 20px;
+    background: url('./assets/wood.jpg');
+    box-shadow: inset #ffffff 0 5px 8px -1px, -5px -5px 5px -5px rgba(0, 0, 0, 0.6) inset;
+}
+
 .svg {
-    width: calc(100vw - 300px);
-    height: 80vh;
     position: relative;
     background: #fff;
     border-radius: 2px;
     padding: 20px;
     cursor: crosshair;
+
 }
 
-.svg::before,
-.svg::after {
-    content: '';
-    position: absolute;
-    bottom: 1.5vw;
-    width: 40%;
-    height: 10px;
-    box-shadow: 0 5px 14px rgba(0,0,0,.7);
-    z-index: -1;
+.svg svg {
+    width: calc(100% - 40px);
+    height: calc(80vh - 40px);
 }
 
-.svg::before {
-    left: 15px;
-    transform: skew(-5deg) rotate(-5deg);
-}
 
-.svg::after {
-    right: 15px;
-    transform: skew(5deg) rotate(5deg);
+@media screen and (max-aspect-ratio: 1/1){
+    .mainContainer {
+        flex-direction: column;
+        padding: 5vw;
+    }
+
+    .svg svg {
+        width: 100%;
+        height: calc(80vh - 250px);
+    }
 }

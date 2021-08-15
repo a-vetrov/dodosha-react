@@ -39,15 +39,20 @@
     transform: scale(1.2);
 }
 
+.currentColorItemSVG {
+    width: 100px;
+}
+
 .container {
     display: grid;
     grid-template-columns: 80px 200px;
     grid-template-rows: auto;
     background-color: #efefef;
+    background: url("./../assets/wood.jpg");
     grid-gap: 10px;
     padding: 10px;
     border-radius: 4px;
-    border: 1px solid lightgrey;
+    box-shadow: inset #ffffff 0 5px 8px -1px, -5px -5px 5px -5px rgba(0, 0, 0, 0.6) inset;
 }
 
 
@@ -63,4 +68,84 @@
 
 .item:hover {
     transform: scale(1.2);
+}
+
+@media screen and (orientation:landscape) and (max-height: 750px) {
+    .container {
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (orientation:landscape) and (max-width: 1200px) {
+    .container {
+        transform: scale(0.8);
+    }
+}
+
+@media screen and (orientation:landscape) and (max-height: 600px) {
+    .container {
+        transform: scale(0.6);
+    }
+}
+
+
+@media screen and (max-aspect-ratio: 1/1){
+    .container {
+        grid-template-columns: 80px auto;
+        padding-right: 16px;
+    }
+    .semiColorBar {
+        flex-direction: row;
+        grid-column-start: 2;
+        grid-column-end: 3;
+        min-height: 20px;
+    }
+
+    .semiColorBarItem {
+        width: auto;
+    }
+    .colorsContainer {
+
+        grid-column-start: 2;
+        grid-column-end: 3;
+
+        display: grid;
+        grid-template-columns: repeat(6, 40px);
+        grid-template-rows: 40px 40px;
+        justify-content: start;
+    }
+
+    .currentColorBox {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 3;
+        flex-direction: column;
+    }
+
+    .item {
+        width: 40px;
+        height: 40px;
+        min-width: 20px;
+        min-height: 20px;
+    }
+
+    .currentColorItemSVG {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 460px) {
+    .colorsContainer {
+        grid-template-columns: repeat(4, 40px);
+        grid-template-rows: 40px 40px 40px;
+    }
+}
+
+@media screen and (orientation:landscape) and (max-height: 450px) {
+
+    .container {
+        grid-template-columns: 80px 280px;
+    }
 }
