@@ -26,6 +26,17 @@
 .currentColorBox {
     grid-column-start: 1;
     grid-column-end: 3;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.currentColorItem {
+    transition: all 0.3s;
+}
+
+.currentColorItem:hover {
+    transform: scale(1.2);
 }
 
 .container {

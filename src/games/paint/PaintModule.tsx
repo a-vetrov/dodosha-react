@@ -5,7 +5,7 @@ import {ReactSVG} from "react-svg";
 import LoadingIcon from '../../components/loading-icon/LoadingIcon';
 import ErrorMessage from '../../components/error-message/ErrorMessage';
 import {useAppSelector} from "../../__data__/hooks";
-import {getCurrentColor} from "../../__data__/slices/paintSlice";
+import {getCurrentColor, getCurrentInstrument} from "../../__data__/slices/paintSlice";
 import PaletteToolbox from "./palette/PaletteToolbox";
 
 type PaintModuleProps = {
@@ -30,12 +30,13 @@ const SVG = React.memo(({src}: PaintModuleProps) => (
 const PaintModule = ({src}: PaintModuleProps) => {
 
     const currentColor = useAppSelector((state) => getCurrentColor(state.paint))
+    const currentInstrument = useAppSelector((state) => getCurrentInstrument(state.paint))
 
     const handleClick = (e: React.MouseEvent) => {
         // @ts-ignore
         if (e.target.ownerSVGElement) {
             // @ts-ignore
-            e.target.setAttribute('fill', currentColor)
+            e.target.setAttribute('fill', currentInstrument === "brush" ? currentColor : '#FFFFFF')
         }
     }
 

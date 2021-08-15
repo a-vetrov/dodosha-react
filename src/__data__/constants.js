@@ -6,7 +6,7 @@ export const NAVIGATION_URL = {
     ALPHABET_ALPHABET_PUZZLE: '/алфавит/собери слово',
 }
 
-export const NO_GRAPHICS_MODE = true
+export const NO_GRAPHICS_MODE = false
 
 export const TITLE = {
     MAIN: 'Додоша - развивающие игры для детей',

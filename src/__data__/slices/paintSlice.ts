@@ -16,12 +16,16 @@ interface IPaintData {
     categories: IPaintCategory[]
 }
 
+export type IPaintInstrument = 'eraser' | 'brush'
+
+
 interface PaintState extends IPaintData {
     loaded:boolean,
     color: {
         main: string,
         current: string,
-    }
+    },
+    currentInstrument: IPaintInstrument
 }
 
 const initialState: PaintState = {
@@ -30,7 +34,8 @@ const initialState: PaintState = {
     color: {
         main: '#ff0000',
         current: '#ff0000',
-    }
+    },
+    currentInstrument: "brush"
 }
 
 export const paintSlice = createSlice({
@@ -50,12 +55,15 @@ export const paintSlice = createSlice({
         setCurrentColor: (state: PaintState, color: PayloadAction<string>) => {
             state.color.current = color.payload
         },
+        setCurrentInstrument: (state: PaintState, instrument: PayloadAction<IPaintInstrument>) => {
+            state.currentInstrument = instrument.payload
+        },
     },
 })
 
-const { loadingCompleteSuccess, loadingCompleteError, setMainColor, setCurrentColor } = paintSlice.actions;
+const { loadingCompleteSuccess, loadingCompleteError, setMainColor, setCurrentColor, setCurrentInstrument } = paintSlice.actions;
 
-export {setMainColor, setCurrentColor}
+export {setMainColor, setCurrentColor, setCurrentInstrument}
 
 const URL = process.env.PUBLIC_URL + '/paint/paint.json'
 
@@ -66,5 +74,7 @@ export const getCategoryByUrl = (state: PaintState, url: string) => state.catego
 export const getMainColor = (state: PaintState) => state.color.main
 
 export const getCurrentColor = (state: PaintState) => state.color.current
+
+export const getCurrentInstrument = (state: PaintState) => state.currentInstrument
 
 export default paintSlice.reducer;

@@ -16,6 +16,7 @@
     background: #fff;
     border-radius: 2px;
     padding: 20px;
+    cursor: crosshair;
 }
 
 .svg::before,
