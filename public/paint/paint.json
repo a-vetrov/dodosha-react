@@ -22,17 +22,24 @@
       ]
     },
     {
-      "title": "Category 2",
-      "url": "категория2",
+      "title": "Динозавры",
+      "url": "динозавры",
       "items": [
         {
-          "svg": "test/1.svg"
+          "svg": "dyno/dyno01.svg",
+          "title": "Когтистый теризинозавр"
         },
         {
-          "svg": "test/2.svg"
+          "svg": "dyno/dyno02.svg",
+          "title": "Симпатичный бронтозавр и летающий птерозавр"
         },
         {
-          "svg": "test/3.svg"
+          "svg": "dyno/dyno03.svg",
+          "title": "Милый стегозавр"
+        },
+        {
+          "svg": "dyno/dyno04.svg",
+          "title": "Забавный трицератопс"
         }
       ]
     },

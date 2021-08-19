@@ -31,7 +31,8 @@ const PaintModule = ({src}: PaintModuleProps) => {
 
     const handleClick = (e: React.MouseEvent) => {
         // @ts-ignore
-        if (e.target.ownerSVGElement) {
+        const fill = e.target?.getAttribute('fill')
+        if (fill && fill !== 'black') {
             // @ts-ignore
             e.target.setAttribute('fill', currentInstrument === "brush" ? currentColor : '#FFFFFF')
         }
