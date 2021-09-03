@@ -40,6 +40,22 @@
         {
           "svg": "dyno/dyno04.svg",
           "title": "Забавный трицератопс"
+        },
+        {
+          "svg": "dyno/dyno05.svg",
+          "title": "Плавающий динозавр плезиозавр"
+        },
+        {
+          "svg": "dyno/dyno06.svg",
+          "title": "Анкилозавр"
+        },
+        {
+          "svg": "dyno/dyno07.svg",
+          "title": "Сцена из доисторической жизни"
+        },
+        {
+          "svg": "dyno/dyno08.svg",
+          "title": "Веселый динозавр"
         }
       ]
     },
