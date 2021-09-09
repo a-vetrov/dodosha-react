@@ -56,21 +56,44 @@
         {
           "svg": "dyno/dyno08.svg",
           "title": "Веселый динозавр"
+        },
+        {
+          "svg": "dyno/dyno09.svg",
+          "title": "Мультяшный паразауролоф"
         }
       ]
     },
     {
-      "title": "Category 3",
-      "url": "категория3",
+      "title": "Цветы",
+      "url": "цветы",
       "items": [
         {
-          "svg": "test/1.svg"
+          "svg": "flowers/flower01.svg",
+          "title": "Букет из трех ромашек"
         },
         {
-          "svg": "test/2.svg"
+          "svg": "flowers/flower02.svg",
+          "title": "Цветок в горшке"
         },
         {
-          "svg": "test/3.svg"
+          "svg": "flowers/flower03.svg",
+          "title": "Букет цветов"
+        },
+        {
+          "svg": "flowers/flower04.svg",
+          "title": "Комнатный цветок"
+        },
+        {
+          "svg": "flowers/flower05.svg",
+          "title": "Крокусы"
+        },
+        {
+          "svg": "flowers/flower06.svg",
+          "title": "Анютины глазки"
+        },
+        {
+          "svg": "flowers/flower07.svg",
+          "title": "Мак"
         }
       ]
     }
