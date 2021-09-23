@@ -1,23 +1,40 @@
 {
   "categories": [
     {
-      "title": "Category 1",
-      "url": "категория1",
+      "title": "Драконы",
+      "url": "драконы",
       "items": [
         {
-          "svg": "test/1.svg"
+          "svg": "dragons/dragon01.svg",
+          "title": "Милый дракоша"
         },
         {
-          "svg": "test/2.svg"
+          "svg": "dragons/dragon02.svg",
+          "title": "Дракон на башне замка"
         },
         {
-          "svg": "test/3.svg"
+          "svg": "dragons/dragon03.svg",
+          "title": "Зубастый дракон"
         },
         {
-          "svg": "test/4.svg"
+          "svg": "dragons/dragon04.svg",
+          "title": "Дракон свернулся калачиком"
         },
         {
-          "svg": "test/5.svg"
+          "svg": "dragons/dragon05.svg",
+          "title": "Вылупляющийся дракон"
+        },
+        {
+          "svg": "dragons/dragon06.svg",
+          "title": "Трехглавый дракон"
+        },
+        {
+          "svg": "dragons/dragon07.svg",
+          "title": "Сидящий дракон"
+        },
+        {
+          "svg": "dragons/dragon08.svg",
+          "title": "Китайский дракон"
         }
       ]
     },
@@ -94,6 +111,88 @@
         {
           "svg": "flowers/flower07.svg",
           "title": "Мак"
+        }
+      ]
+    },
+    {
+      "title": "Животные",
+      "url": "животные",
+      "items": [
+        {
+          "svg": "animals/animal01.svg",
+          "title": "Милый котенок"
+        },
+        {
+          "svg": "animals/animal02.svg",
+          "title": "Собака спит в будке"
+        },
+        {
+          "svg": "animals/animal03.svg",
+          "title": "Пес с косточкой"
+        },
+        {
+          "svg": "animals/animal04.svg",
+          "title": "Лошадка на ферме"
+        },
+        {
+          "svg": "animals/animal05.svg",
+          "title": "Конь скачет на лугу"
+        },
+        {
+          "svg": "animals/animal06.svg",
+          "title": "Индюк на ферме"
+        },
+        {
+          "svg": "animals/animal07.svg",
+          "title": "Рождественский оленёнок"
+        }
+      ]
+    },
+    {
+      "title": "Насекомые",
+      "url": "насекомые",
+      "items": [
+        {
+          "svg": "insects/insect01.svg",
+          "title": "Милая гусеница"
+        },
+        {
+          "svg": "insects/insect02.svg",
+          "title": "Божья коровка"
+        },
+        {
+          "svg": "insects/insect03.svg",
+          "title": "Весёлый кузнечик"
+        },
+        {
+          "svg": "insects/insect04.svg",
+          "title": "Муравей с клубникой"
+        },
+        {
+          "svg": "insects/insect05.svg",
+          "title": "Симпатичная стрекоза"
+        },
+        {
+          "svg": "insects/insect06.svg",
+          "title": "Улыбчивая бабочка"
+        },
+        {
+          "svg": "insects/insect07.svg",
+          "title": "Добродушный паучок"
+        }
+      ]
+    },
+    {
+      "title": "Морские обитатели",
+      "url": "море",
+      "items": [
+        {
+          "svg": "sea/sea01.svg",
+          "title": "Рак"
+        },
+        {
+          "svg": "sea/sea02.svg",
+          "title": "Краб"
         }
       ]
     }
