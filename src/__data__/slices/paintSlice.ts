@@ -3,7 +3,8 @@ import {fetchData} from "../actions/fetchData";
 
 
 interface IPaintItem {
-    svg: string
+    svg: string,
+    title: string
 }
 
 export interface IPaintCategory {

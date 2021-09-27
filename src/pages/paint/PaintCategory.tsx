@@ -40,7 +40,7 @@ const PaintCategory = () => {
 
                 <div className={style['image-container']}>
                     {category.items.map((item, index) =>
-                        <ItemLink categoryUrl={url} svg={item.svg} index={index} key={item.svg}/>)}
+                        <ItemLink categoryUrl={url} {...item} index={index} key={item.svg}/>)}
                 </div>
             </div>
         </>
