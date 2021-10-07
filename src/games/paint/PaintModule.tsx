@@ -39,8 +39,8 @@ const PaintModule = ({src}: PaintModuleProps) => {
     }
 
     return (
-        <div className={style.mainContainer} onClick={handleClick}>
-            <div className={style.canvasHolder}>
+        <div className={style.mainContainer}>
+            <div className={style.canvasHolder} onClick={handleClick}>
                 <SVG src={src} />
             </div>
             <PaletteToolbox />

@@ -16,4 +16,5 @@ export const colors = [
 export const COLORS = {
     WHITE: '#ffffff',
     BLACK: '#000000',
+    GRAY: '#808080'
 }

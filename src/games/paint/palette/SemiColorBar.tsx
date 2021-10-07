@@ -7,12 +7,35 @@ import {COLORS} from "./config";
 
 const COLOR_STEP = 0.1
 
+
+const getColorsArray = (currentColor: string): string[] => {
+    const arr: string[] = []
+
+    if (currentColor === COLORS.WHITE || currentColor === COLORS.BLACK) {
+        for (let i=0; i<=10; i++) {
+            arr.push(interpolateColor(COLORS.GRAY, currentColor, i * COLOR_STEP))
+        }
+        return arr
+    }
+
+    const colorFrom = interpolateColor(COLORS.BLACK, currentColor, 0.2)
+    const colorTo = interpolateColor(COLORS.WHITE, currentColor, 0.2)
+
+    for (let i=0; i<=5; i++) {
+        arr.push(interpolateColor(colorFrom, currentColor, 2 * i * COLOR_STEP))
+    }
+
+    for (let i=1; i<=5; i++) {
+        arr.push(interpolateColor(currentColor, colorTo, 2 * i * COLOR_STEP))
+    }
+
+    return arr
+}
+
+
 const SemiColorBar = () => {
 
     const currentColor = useAppSelector((state) => getMainColor(state.paint))
-
-    const colorFrom = interpolateColor(COLORS.BLACK, currentColor, 0.5)
-    const colorTo = interpolateColor(COLORS.WHITE, currentColor, 0.5)
 
     const dispatch = useAppDispatch()
 
@@ -20,25 +43,19 @@ const SemiColorBar = () => {
         dispatch(setCurrentColor(color))
     }
 
-    const items: React.ReactElement[] = []
-
-    for (let i=0; i<=10; i++) {
-        const color = interpolateColor(colorFrom, colorTo, i * COLOR_STEP)
-        items.push((
-            <div className={style.semiColorBarItem}
-                 style={{backgroundColor: color}}
-                 onClick={handleClick(color)}
-                 key={color}
-            />
-            ))
-    }
-
+    const colors = getColorsArray(currentColor)
 
     return (
         <div className={style.semiColorBar}>
-            {items}
+            {colors.map((color) => (
+                <div className={style.semiColorBarItem}
+                     style={{backgroundColor: color}}
+                     onClick={handleClick(color)}
+                     key={color}
+                />
+            ))}
         </div>
-    );
-};
+    )
+}
 
-export default SemiColorBar;
+export default SemiColorBar
