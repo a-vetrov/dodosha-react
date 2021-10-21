@@ -2,11 +2,12 @@ import style from "./MainHeader.module.css";
 import cloudSrc from "./cloud.svg";
 import gsap from 'gsap'
 
-type TimerId = ReturnType<typeof setTimeout>
+type TimerId = ReturnType<typeof setTimeout> | undefined
 
 export default class Clouds {
 
     container: HTMLDivElement
+    timer: TimerId
 
     constructor(container: HTMLDivElement) {
         this.container = container
