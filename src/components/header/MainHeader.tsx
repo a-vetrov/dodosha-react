@@ -1,12 +1,22 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 
 import style from './MainHeader.module.css'
-import cloud from './cloud.svg'
+import Clouds from "./Clouds";
 
 const MainHeader = () => {
+
+    const ref = useRef<HTMLDivElement>(null)
+
+    useEffect(() => {
+        if (ref.current) {
+            const clouds = new Clouds(ref.current)
+        }
+    }, [])
+
+
     return (
         <header className={style.header}>
-            <img src={cloud}/>
+            <div ref={ref} />
         </header>
     );
 };
