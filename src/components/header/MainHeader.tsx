@@ -7,16 +7,18 @@ const MainHeader = () => {
 
     const ref = useRef<HTMLDivElement>(null)
 
-    useEffect(() => {
+    /*useEffect(() => {
         if (ref.current) {
             const clouds = new Clouds(ref.current)
         }
     }, [])
 
+     */
+
 
     return (
         <header className={style.header}>
-            <div ref={ref} />
+            <div ref={ref} className={style.staticHeader}/>
         </header>
     );
 };

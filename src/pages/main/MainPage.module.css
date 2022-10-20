@@ -1,24 +1,29 @@
 .nav {
-    height: 90vh;
     justify-content: space-around;
-    align-items: flex-end;
+    align-items: stretch;
     display: flex;
-    width: 100vw;
 }
 
 .alphabet {
-    width: 50vmin;
+    width: 200px;
 }
 
 .paint {
-    width: 50vmin;
+    width: 200px;
 }
 
 .link {
     transition: all 0.3s;
+    text-decoration: none;
+    color: #495057;
 }
 
 .link:hover {
     transform: scale(1.05);
     /*box-shadow: 0px 0px 21px 16px rgba(255, 255, 255, 0.47);*/
+}
+
+.mainFrame {
+    padding: 20px;
+    width: 100%;
 }

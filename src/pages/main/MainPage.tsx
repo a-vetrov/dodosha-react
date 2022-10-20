@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from "react-router-dom";
-import {NAVIGATION_URL, NO_GRAPHICS_MODE, TITLE} from "../../__data__/constants";
-import alphabet from './images/alphabet.svg';
-import paint from './images/paint.svg'
+import {TITLE} from "../../__data__/constants";
 import style from './MainPage.module.css'
 import useTitle from "../../utils/hooks/useTitle";
+import BlueBox from "../../components/blue-box/BlueBox";
+import config from "./config";
 
 
 function MainPage() {
@@ -12,14 +12,18 @@ function MainPage() {
     useTitle(TITLE.MAIN)
 
     return (
-        <nav className={style.nav}>
-            <Link to={NAVIGATION_URL.ALPHABET} className={style.link}>
-                {NO_GRAPHICS_MODE ? 'Alphabet' : <img src={alphabet} className={style.alphabet}  alt='Изучаем алфавит'/>}
-            </Link>
-            <Link to={NAVIGATION_URL.PAINT} className={style.link}>
-                {NO_GRAPHICS_MODE ? 'Paint' : <img src={paint} className={style.paint} alt='Онлайн раскраски'/>}
-            </Link>
-        </nav>
+        <div className={style.mainFrame}>
+            <h1>Бесплатные развивающие онлайн игры на Додоше</h1>
+            <nav className={style.nav}>
+                {
+                    config.map((item) => (
+                        <Link to={item.href} className={style.link} key={item.title}>
+                            <BlueBox title={item.title} description={item.description} image={item.image} />
+                        </Link>
+                    ))
+                }
+            </nav>
+        </div>
     );
 }
 

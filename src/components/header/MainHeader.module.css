@@ -3,6 +3,11 @@
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(80,167,252,1) 100%);
 }
 
+.staticHeader {
+    background: url("head.jpg") no-repeat;
+    height: 100%;
+}
+
 @keyframes cloudAnimation {
     0%   { left: 100px; transform: scale(1); opacity: 1;}
     100% { left: 100vw; transform: scale(0.1); opacity: 0}

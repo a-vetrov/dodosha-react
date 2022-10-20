@@ -13,6 +13,7 @@ import AlphabetPuzzle from "./games/alphabet-puzzle/AlphabetPuzzle";
 import PaintCategory from "./pages/paint/PaintCategory";
 import PaintItem from './pages/paint/PaintItem';
 import MainHeader from "./components/header/MainHeader";
+import MainFooter from "./components/footer/MainFooter";
 
 function App() {
     return (
@@ -43,6 +44,7 @@ function App() {
                         <MainPage/>
                     </Route>
                 </Switch>
+                <MainFooter />
             </Router>
         </Provider>
     );
