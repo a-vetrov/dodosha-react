@@ -7,13 +7,17 @@ const MainHeader = () => {
 
     const ref = useRef<HTMLDivElement>(null)
 
-    /*useEffect(() => {
+    useEffect(() => {
+        let clouds: Clouds | undefined
+
         if (ref.current) {
-            const clouds = new Clouds(ref.current)
+            clouds = new Clouds(ref.current)
+        }
+
+        return () => {
+            clouds?.destroy()
         }
     }, [])
-
-     */
 
 
     return (
