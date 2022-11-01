@@ -19,32 +19,34 @@ function App() {
     return (
         <Provider store={store}>
             <Router>
-                <MainHeader />
-                <LoadingIcon />
-                <Switch>
-                    <Route path={`${NAVIGATION_URL.PAINT}/:category/:id`}>
-                        <PaintItem/>
-                    </Route>
-                    <Route path={`${NAVIGATION_URL.PAINT}/:category`}>
-                        <PaintCategory/>
-                    </Route>
-                    <Route path={NAVIGATION_URL.PAINT} exact>
-                        <PaintPage/>
-                    </Route>
-                    <Route path={NAVIGATION_URL.ALPHABET} exact>
-                        <AlphabetPage/>
-                    </Route>
-                    <Route path={NAVIGATION_URL.ALPHABET_SPEAKING_KEYBOARD}>
-                        <SpeakingKeyboard/>
-                    </Route>
-                    <Route path={NAVIGATION_URL.ALPHABET_ALPHABET_PUZZLE}>
-                        <AlphabetPuzzle/>
-                    </Route>
-                    <Route path={NAVIGATION_URL.MAIN}>
-                        <MainPage/>
-                    </Route>
-                </Switch>
-                <MainFooter />
+                <div className={style.container}>
+                    <MainHeader />
+                    <LoadingIcon />
+                    <Switch>
+                        <Route path={`${NAVIGATION_URL.PAINT}/:category/:id`}>
+                            <PaintItem/>
+                        </Route>
+                        <Route path={`${NAVIGATION_URL.PAINT}/:category`}>
+                            <PaintCategory/>
+                        </Route>
+                        <Route path={NAVIGATION_URL.PAINT} exact>
+                            <PaintPage/>
+                        </Route>
+                        <Route path={NAVIGATION_URL.ALPHABET} exact>
+                            <AlphabetPage/>
+                        </Route>
+                        <Route path={NAVIGATION_URL.ALPHABET_SPEAKING_KEYBOARD}>
+                            <SpeakingKeyboard/>
+                        </Route>
+                        <Route path={NAVIGATION_URL.ALPHABET_ALPHABET_PUZZLE}>
+                            <AlphabetPuzzle/>
+                        </Route>
+                        <Route path={NAVIGATION_URL.MAIN}>
+                            <MainPage/>
+                        </Route>
+                    </Switch>
+                    <MainFooter />
+                </div>
             </Router>
         </Provider>
     );

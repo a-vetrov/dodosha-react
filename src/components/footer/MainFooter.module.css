@@ -1,4 +1,5 @@
 .container {
     background: url('bottombg.jpg') repeat-x;
     height: 72px;
+    min-height: 72px;
 }
