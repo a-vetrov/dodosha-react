@@ -6,6 +6,7 @@
 
 .staticHeader {
     background: url("head.jpg") no-repeat;
+    position: relative;
     height: 100%;
 }
 

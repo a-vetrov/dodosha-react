@@ -16,6 +16,10 @@ body {
   user-select: none;
   background: #ffffff;
   box-sizing: border-box;
-  color: #495057;
+  color: black;
+}
+
+h1 {
+  color: darkblue;
 }
 
