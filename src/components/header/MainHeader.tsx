@@ -2,6 +2,7 @@ import React, {useEffect, useRef} from 'react';
 
 import style from './MainHeader.module.css'
 import Clouds from "./Clouds";
+import Letters from "./Letters";
 
 const MainHeader = () => {
 
@@ -23,6 +24,7 @@ const MainHeader = () => {
     return (
         <header className={style.header}>
             <div ref={ref} className={style.staticHeader}/>
+            <Letters />
         </header>
     );
 };
