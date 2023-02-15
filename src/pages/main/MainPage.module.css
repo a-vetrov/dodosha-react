@@ -1,15 +1,9 @@
-@value mediaSm from '../../styles/media.css' ;
+@value mediaSm, mediaMd from '../../styles/media.css' ;
 
 .nav {
     justify-content: space-around;
     align-items: stretch;
     display: flex;
-}
-
-@media mediaSm {
-    .nav {
-        flex-direction: column;
-    }
 }
 
 .alphabet {
@@ -35,3 +29,16 @@
     padding: 20px;
     flex-grow: 1;
 }
+
+@media mediaSm {
+    .nav {
+        flex-direction: column;
+    }
+}
+
+@media mediaMd {
+    .link {
+        flex-basis: 50%;
+    }
+}
+
