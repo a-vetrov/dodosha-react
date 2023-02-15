@@ -1,7 +1,15 @@
+@value mediaSm from '../../styles/media.css' ;
+
 .nav {
     justify-content: space-around;
     align-items: stretch;
     display: flex;
+}
+
+@media mediaSm {
+    .nav {
+        flex-direction: column;
+    }
 }
 
 .alphabet {

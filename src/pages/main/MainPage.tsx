@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import {TITLE} from "../../__data__/constants";
 import style from './MainPage.module.css'
 import useTitle from "../../utils/hooks/useTitle";
-import BlueBox from "../../components/blue-box/BlueBox";
 import config from "./config";
 import PageTemplate from "../../components/page-template/PageTemplate";
+import MainBlueBox from "./blue-box/BlueBox";
 
 
 function MainPage() {
@@ -20,7 +20,7 @@ function MainPage() {
                     {
                         config.map((item) => (
                             <Link to={item.href} className={style.link} key={item.title}>
-                                <BlueBox title={item.title} description={item.description} image={item.image} />
+                                <MainBlueBox title={item.title} description={item.description} image={item.image} />
                             </Link>
                         ))
                     }

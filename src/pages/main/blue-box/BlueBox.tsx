@@ -8,7 +8,7 @@ type Props = {
     image: string
 }
 
-const BlueBox: React.FC<Props> = ({title, description, image}) => (
+const MainBlueBox: React.FC<Props> = ({title, description, image}) => (
     <div className={style.container}>
         <div>
             <h3>{title}</h3>
@@ -18,4 +18,4 @@ const BlueBox: React.FC<Props> = ({title, description, image}) => (
     </div>
 )
 
-export default BlueBox;
+export default MainBlueBox;
