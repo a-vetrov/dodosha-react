@@ -10,11 +10,13 @@ type Props = {
 
 const MainBlueBox: React.FC<Props> = ({title, description, image}) => (
     <div className={style.container}>
-        <div>
+        <div className={style.descriptionContainer}>
             <h3>{title}</h3>
             <p>{description}</p>
         </div>
-        <img src={image} className={style.image} alt={title} />
+        <div className={style.imageContainer}>
+            <img src={image} className={style.image} alt={title} />
+        </div>
     </div>
 )
 

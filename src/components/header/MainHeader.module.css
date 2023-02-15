@@ -2,6 +2,7 @@
     height: 150px;
     min-height: 150px;
     background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(80,167,252,1) 100%);
+    position: relative;
 }
 
 .staticHeader {
@@ -28,6 +29,6 @@
 
 .lettersContainer {
     position: absolute;
-    top: 0px;
+    top: 0;
     cursor: pointer;
 }
