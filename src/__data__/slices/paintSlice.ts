@@ -14,6 +14,7 @@ export interface IPaintCategory {
 }
 
 interface IPaintData {
+    title?: string
     categories: IPaintCategory[]
 }
 
@@ -46,6 +47,7 @@ export const paintSlice = createSlice({
         loadingCompleteSuccess: (state: PaintState, action: PayloadAction<IPaintData>) => {
             state.loaded = true
             state.categories = action.payload.categories
+            state.title = action.payload.title
         },
         loadingCompleteError: (state: PaintState) => {
             state.loaded = false

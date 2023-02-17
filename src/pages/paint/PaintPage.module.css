@@ -1,0 +1,13 @@
+.mainFrame {
+    padding: 20px;
+    flex-grow: 1;
+    max-width: 1200px;
+    align-self: center;
+}
+
+.categoryContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}

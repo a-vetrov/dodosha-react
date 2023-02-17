@@ -6,10 +6,13 @@ import {useAppSelector} from "../../__data__/hooks";
 import usePaintLoader from "./hooks/usePaintLoader";
 import useTitle from "../../utils/hooks/useTitle";
 import {TITLE} from "../../__data__/constants";
+import PageTemplate from "../../components/page-template/PageTemplate";
+import style from './PaintPage.module.css'
 
 function PaintPage() {
 
     const categories = useAppSelector((state) => state.paint.categories)
+    const title = useAppSelector((state) => state.paint.title)
 
     const {loaded, error} = usePaintLoader()
 
@@ -23,11 +26,15 @@ function PaintPage() {
         return null
 
     return (
-        <>
-            <BackButton />
-            <h1>Paint page</h1>
-            {categories.map((item) => <CategoryLink {...item} key={item.title}/>)}
-        </>
+        <PageTemplate>
+            <div className={style.mainFrame}>
+                <BackButton />
+                <h1>{title}</h1>
+                <div className={style.categoryContainer}>
+                    {categories.map((item) => <CategoryLink {...item} key={item.title}/>)}
+                </div>
+            </div>
+        </PageTemplate>
     );
 }
 
