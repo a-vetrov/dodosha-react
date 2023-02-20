@@ -10,6 +10,7 @@ interface IPaintItem {
 export interface IPaintCategory {
     title: string
     url: string
+    preview?: string
     items: IPaintItem[]
 }
 

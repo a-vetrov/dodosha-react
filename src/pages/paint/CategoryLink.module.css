@@ -1,12 +1,18 @@
+@value blueBorderColor from '../../styles/colors.css' ;
+
 .container {
-    padding: 20px;
-    border: 1px solid blue;
+
 }
 
 .link {
     transition: all 0.3s;
     text-decoration: none;
     color: #495057;
+    padding: 20px;
+    border: 1px solid blueBorderColor;
+    background: linear-gradient(#FFFFFF, #e9f4fe);
+    border-radius: 10px;
+    display: block;
 }
 
 .link:hover {
