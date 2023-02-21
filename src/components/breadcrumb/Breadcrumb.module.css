@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    font-size: 20px;
+    align-items: center;
+}
+
+.item {
+    padding: 4px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.delimiter {
+    padding: 0 10px;
+}

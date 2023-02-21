@@ -1,0 +1,6 @@
+.mainFrame {
+    padding: 20px;
+    flex-grow: 1;
+    max-width: 1200px;
+    align-self: center;
+}

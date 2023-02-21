@@ -6,6 +6,7 @@ import useTitle from "../../utils/hooks/useTitle";
 import config from "./config";
 import PageTemplate from "../../components/page-template/PageTemplate";
 import MainBlueBox from "./blue-box/BlueBox";
+import templates from "../../styles/templates.module.css";
 
 
 function MainPage() {
@@ -14,7 +15,7 @@ function MainPage() {
 
     return (
         <PageTemplate>
-            <div className={style.mainFrame}>
+            <div className={templates.mainFrame}>
                 <h1>Бесплатные развивающие онлайн игры на Додоше</h1>
                 <nav className={style.nav}>
                     {

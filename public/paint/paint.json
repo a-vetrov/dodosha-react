@@ -121,6 +121,7 @@
     {
       "title": "Животные",
       "url": "животные",
+      "preview": "animals/animal00.svg",
       "items": [
         {
           "svg": "animals/animal01.svg",
@@ -155,6 +156,7 @@
     {
       "title": "Насекомые",
       "url": "насекомые",
+      "preview": "insects/insect00.svg",
       "items": [
         {
           "svg": "insects/insect01.svg",
@@ -189,6 +191,7 @@
     {
       "title": "Морские обитатели",
       "url": "море",
+      "preview": "sea/sea00.svg",
       "items": [
         {
           "svg": "sea/sea01.svg",

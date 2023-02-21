@@ -12,10 +12,10 @@ const CategoryLink = ({title, url, preview, items}: IPaintCategory) => {
 
     return (
         <Link to={`${NAVIGATION_URL.PAINT}/${url}`} className={style.link}>
-            <div className={style.container}>
-                <img src={image} title={title} alt={title} width={200}/>
-                <div>{title}</div>
+            <div className={style.imageContainer}>
+                <img src={image} title={title} alt={title} />
             </div>
+            <div>{title}</div>
         </Link>
     );
 };

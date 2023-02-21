@@ -7,8 +7,10 @@ import ItemLink from "./ItemLink";
 import BackButton from "../../components/back-button/BackButton";
 
 import style from './PaintCategory.module.css'
+import templates from '../../styles/templates.module.css'
 import usePaintLoader from "./hooks/usePaintLoader";
 import useTitle from "../../utils/hooks/useTitle";
+import PageTemplate from "../../components/page-template/PageTemplate";
 
 interface ICategoryType {
     category: string
@@ -33,9 +35,9 @@ const PaintCategory = () => {
         return <ErrorMessage message='Категория не найдена'/>
 
     return (
-        <>
+        <PageTemplate>
             <BackButton />
-            <div>
+            <div className={templates.mainFrame}>
                 <h1>{category.title}</h1>
 
                 <div className={style['image-container']}>
@@ -43,7 +45,7 @@ const PaintCategory = () => {
                         <ItemLink categoryUrl={url} {...item} index={index} key={item.svg}/>)}
                 </div>
             </div>
-        </>
+        </PageTemplate>
     );
 };
 
