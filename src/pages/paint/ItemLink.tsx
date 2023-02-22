@@ -13,15 +13,12 @@ type ItemLinkProps = {
 const ItemLink = ({categoryUrl, svg, index, title}: ItemLinkProps) => {
 
     return (
-        <div className={style.container}>
-            <Link to={`${NAVIGATION_URL.PAINT}/${categoryUrl}/${index}`} className={style.link}>
-                <div className={style.imageContainer}>
-                    <img src={`${process.env.PUBLIC_URL}/paint/${svg}`} alt='Ссылка на раскраску' className={style.image}/>
-                </div>
-                <p className={style.title}>{title}</p>
-            </Link>
-
-        </div>
+        <Link to={`${NAVIGATION_URL.PAINT}/${categoryUrl}/${index}`} className={style.link}>
+            <div className={style.imageContainer}>
+                <img src={`${process.env.PUBLIC_URL}/paint/${svg}`} alt='Ссылка на раскраску' className={style.image}/>
+            </div>
+            <p className={style.title}>{title}</p>
+        </Link>
     );
 };
 
