@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import _ from 'lodash'
 
-import BackButton from "../../components/back-button/BackButton";
 import Keyboard from "./Keyboard";
 import LetterBlock from "./LetterBlock";
 import {getSoundURLs, getWordsByLetter} from "./utils";
@@ -13,7 +12,19 @@ import style from './SpeakingKeyboard.module.css'
 import {useAppDispatch, useAppSelector} from "../../__data__/hooks";
 import {fetchAlphabetData, getLettersURLDict, IWord} from "../../__data__/slices/alphabetSlice";
 import useTitle from "../../utils/hooks/useTitle";
-import {TITLE} from "../../__data__/constants";
+import {NAVIGATION_URL, TITLE} from "../../__data__/constants";
+import PageTemplate from "../../components/page-template/PageTemplate";
+import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
+
+const breadCrumbs = [
+    {
+        caption: 'Изучаем алфавит',
+        link: NAVIGATION_URL.ALPHABET
+    },
+    {
+        caption: TITLE.ALPHABET_SPEAKING_KEYBOARD
+    }
+]
 
 const SpeakingKeyboard = () => {
 
@@ -55,14 +66,16 @@ const SpeakingKeyboard = () => {
         return null
 
     return (
-        <>
-            <BackButton />
-            <div className={style['main-container']}>
+        <PageTemplate>
+            <div className={style.breadcrumbsContainer}>
+                <Breadcrumb items={breadCrumbs}/>
+            </div>
+            <div className={style.mainContainer}>
                 <LetterBlock letter={currentLetter}/>
                 <Keyboard onChange={onLetterChange}/>
                 <WordBlock {...currentWord} />
             </div>
-        </>
+        </PageTemplate>
     );
 };
 

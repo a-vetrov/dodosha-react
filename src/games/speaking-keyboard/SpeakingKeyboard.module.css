@@ -1,7 +1,7 @@
-.main-container {
-    padding: 5vmin;
-    width: 100vw;
-    height: 100vh;
+.mainContainer {
+    padding: 20px;
+    width: calc(100vw - 20px);
+    height: 800px;
     box-sizing: border-box;
 
     display: grid;
@@ -14,8 +14,9 @@
     margin: 0;
 }
 
+
 @media (max-aspect-ratio: 3/4) {
-    .main-container {
+    .mainContainer {
         grid-template-areas:
                 "word"
                 "letter"
@@ -23,4 +24,8 @@
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-columns: 1fr;
     }
+}
+
+.breadcrumbsContainer {
+    padding: 20px;
 }
