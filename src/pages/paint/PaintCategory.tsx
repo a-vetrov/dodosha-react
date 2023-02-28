@@ -23,7 +23,7 @@ const PaintCategory = () => {
 
     const {loaded, error} = usePaintLoader()
 
-    useTitle(category?.title)
+    useTitle(`${category?.title} - Раскраски на Додоше`)
 
     const breadCrumbs = useMemo(() => [
         {

@@ -51,7 +51,6 @@
     color: black;
     padding: 20px;
     border: 1px solid blueBorderColor;
-    background: linear-gradient(#FFFFFF, #e9f4fe);
     border-radius: 10px;
     width: 240px;
     display: flex;

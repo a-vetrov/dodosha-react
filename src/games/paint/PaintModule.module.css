@@ -1,9 +1,7 @@
 .mainContainer {
     box-sizing: border-box;
-    width: 100vw;
-    height: 90vh;
-    margin: 5vh 0;
-    padding: 5vh;
+    width: calc(100vw - 60px);
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -28,18 +26,18 @@
 
 .svg svg {
     width: calc(100% - 40px);
-    height: calc(80vh - 40px);
+    height: calc(100vh - 120px);
 }
 
 
 @media screen and (max-aspect-ratio: 1/1){
     .mainContainer {
         flex-direction: column;
-        padding: 5vw;
+        padding: 20px 0;
     }
 
     .svg svg {
         width: 100%;
-        height: calc(80vh - 250px);
+        height: calc(100vh - 280px);
     }
 }
