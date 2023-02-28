@@ -1,13 +1,26 @@
 import React, {useEffect, useState, useLayoutEffect} from 'react';
 import _ from 'lodash'
 
-import BackButton from "../../components/back-button/BackButton";
 import ErrorMessage from "../../components/error-message/ErrorMessage";
 import Puzzle from "./Puzzle";
 import {useAppDispatch, useAppSelector} from "../../__data__/hooks";
 import {fetchAlphabetData, getShortWords, IWord} from "../../__data__/slices/alphabetSlice";
 import useTitle from "../../utils/hooks/useTitle";
-import {TITLE} from "../../__data__/constants";
+import {NAVIGATION_URL, TITLE} from "../../__data__/constants";
+import PageTemplate from "../../components/page-template/PageTemplate";
+
+import style from './AlphabetPuzzle.module.css'
+import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
+
+const breadCrumbs = [
+    {
+        caption: 'Изучаем алфавит',
+        link: NAVIGATION_URL.ALPHABET
+    },
+    {
+        caption: TITLE.ALPHABET_ALPHABET_PUZZLE
+    }
+]
 
 const AlphabetPuzzle = () => {
 
@@ -49,10 +62,12 @@ const AlphabetPuzzle = () => {
     }
 
     return (
-        <>
-            <BackButton />
+        <PageTemplate>
+            <div className={style.breadcrumbsContainer}>
+                <Breadcrumb items={breadCrumbs}/>
+            </div>
             {currentWord && <Puzzle {...currentWord} onComplete={handleComplete}/>}
-        </>
+        </PageTemplate>
     )
 }
 
