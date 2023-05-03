@@ -1,4 +1,4 @@
-@value blueBorderColor from '../../styles/colors.css' ;
+@value blueBorderColor, blackText from '../../styles/colors.css' ;
 
 .container {
     width: 200px;
@@ -75,7 +75,7 @@
 .title {
     font-size: 20px;
     text-decoration: none;
-    color: black;
+    color: blackText;
     margin: 0;
     padding: 0;
 }

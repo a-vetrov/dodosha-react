@@ -1,4 +1,4 @@
-@value blueBorderColor from '../../styles/colors.css' ;
+@value blueBorderColor, blackText from '../../styles/colors.css' ;
 @value mediaMd, mediaSm from '../../styles/media.css' ;
 
 
@@ -14,7 +14,7 @@
 .link {
     transition: all 0.3s;
     text-decoration: none;
-    color: #495057;
+    color: blackText;
 }
 
 .link:hover {

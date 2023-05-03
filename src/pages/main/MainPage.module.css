@@ -1,4 +1,5 @@
 @value mediaSm, mediaMd from '../../styles/media.css' ;
+@value blackText from '../../styles/colors.css' ;
 
 .nav {
     justify-content: space-around;
@@ -17,7 +18,7 @@
 .link {
     transition: all 0.3s;
     text-decoration: none;
-    color: #495057;
+    color: blackText;
 }
 
 .link:hover {
