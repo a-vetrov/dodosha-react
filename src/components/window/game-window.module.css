@@ -1,0 +1,32 @@
+@value blueBorderColor, blackText from '../../styles/colors.css' ;
+
+.absolutContainer {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.gameWindowContainer {
+    margin: 5px;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 20px);
+    background: rgba(255,255,255,0.4);
+    border-radius: 20px;
+    border: 3px solid blueBorderColor;
+}
+
+.windowHeader {
+    border-radius: 20px 20px 0 0;
+    background: rgba(255,255,255,0.5);
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.closeButton {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+    fill: #3fb1eb;
+}

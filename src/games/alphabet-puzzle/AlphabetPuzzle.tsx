@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useLayoutEffect} from 'react';
+import React, {useEffect, useState, useLayoutEffect, useCallback} from 'react';
 import _ from 'lodash'
 
 import ErrorMessage from "../../components/error-message/ErrorMessage";
@@ -11,6 +11,8 @@ import PageTemplate from "../../components/page-template/PageTemplate";
 
 import style from './AlphabetPuzzle.module.css'
 import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
+import GameWindow from "../../components/window";
+import {useHistory} from "react-router-dom";
 
 const breadCrumbs = [
     {
@@ -25,6 +27,7 @@ const breadCrumbs = [
 const AlphabetPuzzle = () => {
 
     const dispatch = useAppDispatch()
+    const history = useHistory()
     const loaded = useAppSelector((state) => state.alphabet.loaded)
     const error = useAppSelector((state) => state.alphabet.error)
     const words = useAppSelector((state) => getShortWords(state.alphabet))
@@ -34,6 +37,12 @@ const AlphabetPuzzle = () => {
     const setRandomCurrentWord = () => {
         setCurrentWord(_.sample(words))
     }
+
+    const handleClose = useCallback(() => {
+        console.log('onClose!')
+        history.push(NAVIGATION_URL.ALPHABET)
+    }, [history])
+
 
     useTitle(TITLE.ALPHABET_ALPHABET_PUZZLE)
 
@@ -61,12 +70,15 @@ const AlphabetPuzzle = () => {
         setRandomCurrentWord()
     }
 
+
     return (
         <PageTemplate>
             <div className={style.breadcrumbsContainer}>
                 <Breadcrumb items={breadCrumbs}/>
             </div>
-            {currentWord && <Puzzle {...currentWord} onComplete={handleComplete}/>}
+            <GameWindow onClose={handleClose}>
+                {currentWord && <Puzzle {...currentWord} onComplete={handleComplete}/>}
+            </GameWindow>
         </PageTemplate>
     )
 }
