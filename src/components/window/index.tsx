@@ -8,7 +8,7 @@ interface Props {
 
 const GameWindow: React.FC<Props> = ({children, onClose}) => {
     return (
-        <div className={style.absolutContainer}>
+        <div className={style.absoluteContainer}>
             <div className={style.gameWindowContainer}>
                 <div className={style.windowHeader}>
                     <svg className={style.closeButton} onClick={onClose} xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24" width="24px" height="24px">

@@ -1,18 +1,26 @@
 @value blueBorderColor, blackText from '../../styles/colors.css' ;
 
-.absolutContainer {
+.absoluteContainer {
     position: absolute;
     top: 0;
     left: 0;
+    overflow: hidden;
 }
 
 .gameWindowContainer {
     margin: 5px;
-    width: calc(100vw - 20px);
-    height: calc(100vh - 20px);
-    background: rgba(255,255,255,0.4);
+    width: calc(100vw - 10px);
+    height: calc(100vh - 10px);
     border-radius: 20px;
-    border: 3px solid blueBorderColor;
+
+    background-color: white;
+    background-image: url("window-bg.svg");
+    background-attachment: fixed;
+    background-size: cover;
+
+    animation-name: backInDown;
+    animation-fill-mode: both;
+    animation-duration: 1s;
 }
 
 .windowHeader {
@@ -28,5 +36,18 @@
     width: 40px;
     height: 40px;
     margin-right: 10px;
-    fill: #3fb1eb;
+    fill: #693c0b;
+    cursor: pointer;
+}
+
+@keyframes backInDown {
+    0% {
+        transform: translateY(-1200px);
+        opacity: 0.7;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
 }
