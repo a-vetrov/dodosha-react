@@ -46,9 +46,3 @@
         flex-direction: column;
     }
 }
-
-@media mediaMd {
-    .link {
-        flex-basis: 50%;
-    }
-}

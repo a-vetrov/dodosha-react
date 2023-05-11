@@ -4,11 +4,18 @@ import style from './MainHeader.module.css'
 import Clouds from "./Clouds";
 import Letters from "./Letters";
 
-const MainHeader = () => {
+interface Props {
+    animateClouds?: boolean
+}
+
+const MainHeader: React.FC<Props> = ({animateClouds=true}) => {
 
     const ref = useRef<HTMLDivElement>(null)
 
     useEffect(() => {
+        if (!animateClouds) {
+            return
+        }
         let clouds: Clouds | undefined
 
         if (ref.current) {
@@ -18,7 +25,7 @@ const MainHeader = () => {
         return () => {
             clouds?.destroy()
         }
-    }, [])
+    }, [animateClouds])
 
 
     return (

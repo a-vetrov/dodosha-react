@@ -39,7 +39,6 @@ const AlphabetPuzzle = () => {
     }
 
     const handleClose = useCallback(() => {
-        console.log('onClose!')
         history.push(NAVIGATION_URL.ALPHABET)
     }, [history])
 
@@ -72,7 +71,7 @@ const AlphabetPuzzle = () => {
 
 
     return (
-        <PageTemplate>
+        <PageTemplate animateClouds={false}>
             <div className={style.breadcrumbsContainer}>
                 <Breadcrumb items={breadCrumbs}/>
             </div>
