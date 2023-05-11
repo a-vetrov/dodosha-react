@@ -13,6 +13,7 @@ import Item from "./data/Item";
 import {IDownEvent} from "./interfaces/IDownEvent";
 
 const GRAB_SHIFT = 4
+const WINDOW_SHIFT = 55
 const defaultShift = {x: -GRAB_SHIFT, y: -GRAB_SHIFT}
 
 type PuzzlePropType = {
@@ -146,7 +147,7 @@ class Puzzle extends Component<PuzzlePropType, PuzzleStateType>{
 
         if (item?.ref?.current) {
             const {x, y} = item.ref.current.getBoundingClientRect()
-            currentItemShift = {x: e.clientX - x + GRAB_SHIFT, y: e.clientY - y + GRAB_SHIFT}
+            currentItemShift = {x: e.clientX - x + GRAB_SHIFT, y: e.clientY - y + GRAB_SHIFT + WINDOW_SHIFT}
         } else {
             currentItemShift = defaultShift
         }
