@@ -1,7 +1,13 @@
+.absoluteContainer {
+    position: fixed;
+    top: 55px;
+    left: 0;
+}
+
 .mainContainer {
     padding: 20px;
     width: calc(100vw - 20px);
-    height: 800px;
+    height: calc(100vh - 55px);
     box-sizing: border-box;
 
     display: grid;
@@ -28,4 +34,5 @@
 
 .breadcrumbsContainer {
     padding: 20px;
+    flex-grow: 1;
 }

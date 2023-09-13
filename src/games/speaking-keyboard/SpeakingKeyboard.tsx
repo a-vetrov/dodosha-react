@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import _ from 'lodash'
 
 import Keyboard from "./Keyboard";
@@ -15,6 +15,8 @@ import useTitle from "../../utils/hooks/useTitle";
 import {NAVIGATION_URL, TITLE} from "../../__data__/constants";
 import PageTemplate from "../../components/page-template/PageTemplate";
 import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
+import {useHistory} from "react-router-dom";
+import GameWindow from "../../components/window";
 
 const breadCrumbs = [
     {
@@ -26,7 +28,7 @@ const breadCrumbs = [
     }
 ]
 
-const SpeakingKeyboard = () => {
+const SpeakingKeyboard: React.FC = () => {
 
     const dispatch = useAppDispatch()
     const loaded = useAppSelector((state) => state.alphabet.loaded)
@@ -39,6 +41,12 @@ const SpeakingKeyboard = () => {
     const [currentWord, setCurrentWord] = useState<IWord | undefined>(undefined)
 
     useTitle(TITLE.ALPHABET_SPEAKING_KEYBOARD)
+
+    const history = useHistory()
+
+    const handleClose = useCallback(() => {
+        history.push(NAVIGATION_URL.ALPHABET)
+    }, [history])
 
     useEffect(() => {
         if (!loaded){ // @ts-ignore
@@ -66,15 +74,19 @@ const SpeakingKeyboard = () => {
         return null
 
     return (
-        <PageTemplate>
+        <PageTemplate animateClouds={false}>
             <div className={style.breadcrumbsContainer}>
                 <Breadcrumb items={breadCrumbs}/>
             </div>
-            <div className={style.mainContainer}>
-                <LetterBlock letter={currentLetter}/>
-                <Keyboard onChange={onLetterChange}/>
-                <WordBlock {...currentWord} />
-            </div>
+            <GameWindow onClose={handleClose}>
+                <div className={style.absoluteContainer}>
+                    <div className={style.mainContainer}>
+                        <LetterBlock letter={currentLetter}/>
+                        <Keyboard onChange={onLetterChange}/>
+                        <WordBlock {...currentWord} />
+                    </div>
+                </div>
+            </GameWindow>
         </PageTemplate>
     );
 };
