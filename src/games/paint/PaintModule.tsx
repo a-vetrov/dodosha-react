@@ -1,11 +1,15 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
 import style from './PaintModule.module.css'
 import {ReactSVG} from "react-svg";
 import LoadingIcon from '../../components/loading-icon/LoadingIcon';
 import ErrorMessage from '../../components/error-message/ErrorMessage';
-import {useAppSelector} from "../../__data__/hooks";
-import {getCurrentColor, getCurrentInstrument} from "../../__data__/slices/paintSlice";
+import {useAppDispatch, useAppSelector} from "../../__data__/hooks";
+import {
+    getCurrentColor,
+    getCurrentInstrument,
+    setCurrentInstrument
+} from "../../__data__/slices/paintSlice";
 import PaletteToolbox from "./palette/PaletteToolbox";
 
 type PaintModuleProps = {
@@ -28,6 +32,12 @@ const PaintModule = ({src}: PaintModuleProps) => {
 
     const currentColor = useAppSelector((state) => getCurrentColor(state.paint))
     const currentInstrument = useAppSelector((state) => getCurrentInstrument(state.paint))
+
+    const dispatch = useAppDispatch()
+
+    useEffect(() => {
+        dispatch(setCurrentInstrument('brush'))
+    }, [])
 
     const handleClick = (e: React.MouseEvent) => {
         // @ts-ignore

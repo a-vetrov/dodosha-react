@@ -55,9 +55,11 @@ export const paintSlice = createSlice({
         },
         setMainColor: (state: PaintState, color: PayloadAction<string>) => {
             state.color.main = state.color.current = color.payload
+            state.currentInstrument = 'brush'
         },
         setCurrentColor: (state: PaintState, color: PayloadAction<string>) => {
             state.color.current = color.payload
+            state.currentInstrument = 'brush'
         },
         setCurrentInstrument: (state: PaintState, instrument: PayloadAction<IPaintInstrument>) => {
             state.currentInstrument = instrument.payload
