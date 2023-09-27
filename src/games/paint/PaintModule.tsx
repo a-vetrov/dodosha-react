@@ -37,6 +37,7 @@ const PaintModule = ({src}: PaintModuleProps) => {
 
     useEffect(() => {
         dispatch(setCurrentInstrument('brush'))
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [])
 
     const handleClick = (e: React.MouseEvent) => {
