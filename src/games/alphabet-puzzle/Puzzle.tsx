@@ -11,6 +11,7 @@ import {getAlphabetURL} from "../speaking-keyboard/utils";
 import {isNotTouchable} from "../../utils/adaptive";
 import Item from "./data/Item";
 import {IDownEvent} from "./interfaces/IDownEvent";
+import _ from "lodash";
 
 const GRAB_SHIFT = 4
 const WINDOW_SHIFT = 55
@@ -64,6 +65,8 @@ class Puzzle extends Component<PuzzlePropType, PuzzleStateType>{
         puzzleStructure.list.forEach(item => item.ref = React.createRef())
         this.startAppearAnimation(puzzleStructure)
     }
+
+    createPuzzleStructureDebounced = _.debounce(this.createPuzzleStructure, 300)
 
     playWordSound = () => {
         const {mp3} = this.props
@@ -130,8 +133,10 @@ class Puzzle extends Component<PuzzlePropType, PuzzleStateType>{
         const {puzzleStructure} = this.state
 
         if (puzzleStructure) {
-            puzzleStructure.updateDimensions()
-            this.setState({puzzleStructure})
+            console.log('handleWindowResize', this)
+            this.createPuzzleStructureDebounced()
+            //puzzleStructure.updateDimensions()
+            //this.setState({puzzleStructure})
         }
     }
 
