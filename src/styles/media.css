@@ -1,0 +1,8 @@
+/* Phone */
+@value mediaSm: (max-width: 735.98px);
+
+/* Tablet */
+@value mediaMd: (min-width: 736px) and (max-width: 1311.98px);
+
+/* Desktop */
+@value mediaLg: (min-width: 1312px);

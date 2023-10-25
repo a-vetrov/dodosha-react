@@ -1,7 +1,13 @@
-.main-container {
-    padding: 5vmin;
-    width: 100vw;
-    height: 100vh;
+.absoluteContainer {
+    position: fixed;
+    top: 55px;
+    left: 0;
+}
+
+.mainContainer {
+    padding: 20px;
+    width: calc(100vw - 20px);
+    height: calc(100vh - 55px);
     box-sizing: border-box;
 
     display: grid;
@@ -14,8 +20,9 @@
     margin: 0;
 }
 
+
 @media (max-aspect-ratio: 3/4) {
-    .main-container {
+    .mainContainer {
         grid-template-areas:
                 "word"
                 "letter"
@@ -23,4 +30,9 @@
         grid-template-rows: 1fr 1fr 1fr;
         grid-template-columns: 1fr;
     }
+}
+
+.breadcrumbsContainer {
+    padding: 20px;
+    flex-grow: 1;
 }

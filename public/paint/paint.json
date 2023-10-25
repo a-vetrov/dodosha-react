@@ -1,8 +1,10 @@
 {
+  "title": "Онлайн раскраски",
   "categories": [
     {
       "title": "Драконы",
       "url": "драконы",
+      "preview": "dragons/dragon00.svg",
       "items": [
         {
           "svg": "dragons/dragon01.svg",
@@ -41,6 +43,7 @@
     {
       "title": "Динозавры",
       "url": "динозавры",
+      "preview": "dyno/dyno00.svg",
       "items": [
         {
           "svg": "dyno/dyno01.svg",
@@ -83,6 +86,7 @@
     {
       "title": "Цветы",
       "url": "цветы",
+      "preview": "flowers/flower00.svg",
       "items": [
         {
           "svg": "flowers/flower01.svg",
@@ -117,6 +121,7 @@
     {
       "title": "Животные",
       "url": "животные",
+      "preview": "animals/animal00.svg",
       "items": [
         {
           "svg": "animals/animal01.svg",
@@ -151,6 +156,7 @@
     {
       "title": "Насекомые",
       "url": "насекомые",
+      "preview": "insects/insect00.svg",
       "items": [
         {
           "svg": "insects/insect01.svg",
@@ -185,6 +191,7 @@
     {
       "title": "Морские обитатели",
       "url": "море",
+      "preview": "sea/sea00.svg",
       "items": [
         {
           "svg": "sea/sea01.svg",

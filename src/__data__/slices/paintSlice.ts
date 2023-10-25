@@ -10,10 +10,12 @@ interface IPaintItem {
 export interface IPaintCategory {
     title: string
     url: string
+    preview?: string
     items: IPaintItem[]
 }
 
 interface IPaintData {
+    title?: string
     categories: IPaintCategory[]
 }
 
@@ -46,15 +48,18 @@ export const paintSlice = createSlice({
         loadingCompleteSuccess: (state: PaintState, action: PayloadAction<IPaintData>) => {
             state.loaded = true
             state.categories = action.payload.categories
+            state.title = action.payload.title
         },
         loadingCompleteError: (state: PaintState) => {
             state.loaded = false
         },
         setMainColor: (state: PaintState, color: PayloadAction<string>) => {
             state.color.main = state.color.current = color.payload
+            state.currentInstrument = 'brush'
         },
         setCurrentColor: (state: PaintState, color: PayloadAction<string>) => {
             state.color.current = color.payload
+            state.currentInstrument = 'brush'
         },
         setCurrentInstrument: (state: PaintState, instrument: PayloadAction<IPaintInstrument>) => {
             state.currentInstrument = instrument.payload

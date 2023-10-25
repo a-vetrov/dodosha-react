@@ -1,0 +1,34 @@
+.header {
+    height: 150px;
+    min-height: 150px;
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(80,167,252,1) 100%);
+    position: relative;
+}
+
+.staticHeader {
+    /*background: url("head.jpg") no-repeat;*/
+    position: relative;
+    height: 100%;
+}
+
+@keyframes cloudAnimation {
+    0%   { left: 100px; transform: scale(1); opacity: 1;}
+    100% { left: 100vw; transform: scale(0.1); opacity: 0}
+}
+
+.cloud {
+    position: absolute;
+    top: 10px;
+    left: -270px;
+    /*animation-name: cloudAnimation;
+    animation-duration: 100s;
+    animation-fill-mode: both;
+
+     */
+}
+
+.lettersContainer {
+    position: absolute;
+    top: 0;
+    cursor: pointer;
+}

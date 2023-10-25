@@ -1,7 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import _ from 'lodash'
 
-import BackButton from "../../components/back-button/BackButton";
 import Keyboard from "./Keyboard";
 import LetterBlock from "./LetterBlock";
 import {getSoundURLs, getWordsByLetter} from "./utils";
@@ -13,9 +12,23 @@ import style from './SpeakingKeyboard.module.css'
 import {useAppDispatch, useAppSelector} from "../../__data__/hooks";
 import {fetchAlphabetData, getLettersURLDict, IWord} from "../../__data__/slices/alphabetSlice";
 import useTitle from "../../utils/hooks/useTitle";
-import {TITLE} from "../../__data__/constants";
+import {NAVIGATION_URL, TITLE} from "../../__data__/constants";
+import PageTemplate from "../../components/page-template/PageTemplate";
+import Breadcrumb from "../../components/breadcrumb/Breadcrumb";
+import {useHistory} from "react-router-dom";
+import GameWindow from "../../components/window";
 
-const SpeakingKeyboard = () => {
+const breadCrumbs = [
+    {
+        caption: 'Изучаем алфавит',
+        link: NAVIGATION_URL.ALPHABET
+    },
+    {
+        caption: TITLE.ALPHABET_SPEAKING_KEYBOARD
+    }
+]
+
+const SpeakingKeyboard: React.FC = () => {
 
     const dispatch = useAppDispatch()
     const loaded = useAppSelector((state) => state.alphabet.loaded)
@@ -28,6 +41,12 @@ const SpeakingKeyboard = () => {
     const [currentWord, setCurrentWord] = useState<IWord | undefined>(undefined)
 
     useTitle(TITLE.ALPHABET_SPEAKING_KEYBOARD)
+
+    const history = useHistory()
+
+    const handleClose = useCallback(() => {
+        history.push(NAVIGATION_URL.ALPHABET)
+    }, [history])
 
     useEffect(() => {
         if (!loaded){ // @ts-ignore
@@ -55,14 +74,20 @@ const SpeakingKeyboard = () => {
         return null
 
     return (
-        <>
-            <BackButton />
-            <div className={style['main-container']}>
-                <LetterBlock letter={currentLetter}/>
-                <Keyboard onChange={onLetterChange}/>
-                <WordBlock {...currentWord} />
+        <PageTemplate animateClouds={false}>
+            <div className={style.breadcrumbsContainer}>
+                <Breadcrumb items={breadCrumbs}/>
             </div>
-        </>
+            <GameWindow onClose={handleClose}>
+                <div className={style.absoluteContainer}>
+                    <div className={style.mainContainer}>
+                        <LetterBlock letter={currentLetter}/>
+                        <Keyboard onChange={onLetterChange}/>
+                        <WordBlock {...currentWord} />
+                    </div>
+                </div>
+            </GameWindow>
+        </PageTemplate>
     );
 };
 

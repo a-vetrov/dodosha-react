@@ -1,0 +1,49 @@
+@value blueBorderColor from '../../../styles/colors.css' ;
+@value mediaMd, mediaSm from '../../../styles/media.css' ;
+
+.container {
+    border: 1px solid blueBorderColor;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 10px;
+    display: flex;
+    max-width: 500px;
+    align-items: flex-start;
+    height: 100%;
+}
+
+@media mediaMd {
+    .container {
+        flex-direction: column;
+    }
+
+    .imageContainer {
+        align-self: center;
+    }
+
+    .descriptionContainer {
+        flex-grow: 1
+    }
+
+}
+
+@media mediaSm {
+    .container {
+        flex-direction: column;
+        align-items: center;
+        max-width: none;
+    }
+
+    .container p {
+        display: none;
+    }
+}
+
+
+.image {
+    width: 200px;
+}
+
+.flex {
+    display: flex;
+}

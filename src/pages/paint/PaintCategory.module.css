@@ -1,9 +1,6 @@
-.image-container {
+.imageContainer {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    width: 80%;
-    max-width: 1000px;
     justify-content: center;
-    margin: 0 auto;
 }
