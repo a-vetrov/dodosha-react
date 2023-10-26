@@ -7,6 +7,7 @@ import config from "./config";
 import PageTemplate from "../../components/page-template/PageTemplate";
 import MainBlueBox from "./blue-box/BlueBox";
 import templates from "../../styles/templates.module.css";
+import {YandexAds} from "../../components/yandex";
 
 
 function MainPage() {
@@ -27,6 +28,7 @@ function MainPage() {
                     }
                 </nav>
             </div>
+            <YandexAds />
         </PageTemplate>
     );
 }
