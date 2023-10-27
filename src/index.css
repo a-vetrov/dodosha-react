@@ -1,7 +1,5 @@
-
-html {
-  position: fixed;
-  overflow: hidden;
+html,body {
+  overflow: hidden
 }
 
 
@@ -17,6 +15,10 @@ body {
   background: #ffffff;
   box-sizing: border-box;
   color: #111;
+
+  position: relative;
+  height: auto;
+  min-height: 100vh
 }
 
 h1 {
