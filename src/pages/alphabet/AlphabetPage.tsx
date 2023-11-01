@@ -37,10 +37,10 @@ function AlphabetPage() {
                 <Breadcrumb items={breadCrumbs}/>
                 <h1>Изучаем алфавит</h1>
                 <nav className={style.nav}>
-                    <Link to={NAVIGATION_URL.ALPHABET_SPEAKING_KEYBOARD} className={style.link} onClick={switchToFullScreen}>
+                    <Link to={NAVIGATION_URL.ALPHABET_SPEAKING_KEYBOARD} className={style.link} onClick={switchToFullScreen} title="Говорящий алфавит">
                         <LinkItem title="Говорящий алфавит" image={speakingKeyboardIcon} />
                     </Link>
-                    <Link to={NAVIGATION_URL.ALPHABET_ALPHABET_PUZZLE} className={style.link} onClick={switchToFullScreen}>
+                    <Link to={NAVIGATION_URL.ALPHABET_ALPHABET_PUZZLE} className={style.link} onClick={switchToFullScreen} title="Собери слово">
                         <LinkItem title="Собери слово" image={alphabetPuzzleIcon} />
                     </Link>
                 </nav>

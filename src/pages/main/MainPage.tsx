@@ -21,7 +21,7 @@ function MainPage() {
                 <nav className={style.nav}>
                     {
                         config.map((item) => (
-                            <Link to={item.href} className={style.link} key={item.title}>
+                            <Link to={item.href} className={style.link} key={item.title} title={item.title}>
                                 <MainBlueBox title={item.title} description={item.description} image={item.image} />
                             </Link>
                         ))

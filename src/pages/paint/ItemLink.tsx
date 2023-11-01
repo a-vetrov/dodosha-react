@@ -13,7 +13,7 @@ type ItemLinkProps = {
 const ItemLink = ({categoryUrl, svg, index, title}: ItemLinkProps) => {
 
     return (
-        <Link to={`${NAVIGATION_URL.PAINT}/${categoryUrl}/${index}`} className={style.link}>
+        <Link to={`${NAVIGATION_URL.PAINT}/${categoryUrl}/${index}`} className={style.link} title={`Раскраска - ${title}`}>
             <div className={style.imageContainer}>
                 <img src={`${process.env.PUBLIC_URL}/paint/${svg}`} alt='Ссылка на раскраску' className={style.image}/>
             </div>
