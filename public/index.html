@@ -5,6 +5,10 @@
     <link rel="apple-touch-icon" sizes="180x180" href="%PUBLIC_URL%/favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="%PUBLIC_URL%/favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="%PUBLIC_URL%/favicon/favicon-16x16.png">
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="%PUBLIC_URL%/favicon/favicon-128.png" sizes="128x128" />
+    <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon/favicon.svg" />
     <link rel="manifest" href="%PUBLIC_URL%/favicon/site.webmanifest">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon/favicon.ico">
     <meta name="msapplication-TileColor" content="#da532c">
@@ -23,6 +27,14 @@
     <script>window.yaContextCb=window.yaContextCb||[]</script>
     <script src="https://yandex.ru/ads/system/context.js" async></script>
     <!-- Yandex.RTB -->
+
+    <?
+      echo $_SERVER["REQUEST_URI"]
+    ?>
+
+    <script>
+      console.log('<? echo $_SERVER["REQUEST_URI"] ?>')
+    </script>
   </head>
   <body>
     <noscript>Чтобы играть в игры по изучению алфавита или разукрашивать раскраски на нашем сайте, нужно включить Javascript. Все игры работают на мобильных устройствах, и на компьютере.</noscript>
